@@ -75,12 +75,15 @@
               </li>
               <li><hr class="dropdown-divider"></li>
               <li>
-                <a class="dropdown-item" href="authentication-signup-with-header-footer.html">
-                   <div class="d-flex align-items-center">
-                     <div class="setting-icon"><i class="bi bi-lock-fill"></i></div>
-                     <div class="setting-text ms-3"><span>Logout</span></div>
-                   </div>
-                 </a>
+                <form action="/logout" method="POST">
+                  @csrf
+                  <button type="submit" class="dropdown-item" href="authentication-signup-with-header-footer.html">
+                    <div class="d-flex align-items-center">
+                      <div class="setting-icon"><i class="bi bi-lock-fill"></i></div>
+                      <div class="setting-text ms-3"><span>Logout</span></div>
+                    </div>
+                  </button>
+                </form>
               </li>
           </ul>
         </li>

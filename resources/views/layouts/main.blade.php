@@ -29,7 +29,9 @@
 
 <body>
 
-
+  @if (session()->has('message'))
+    <div id="flash-data" data-flashdata="{{ session('message') }}"></div>
+  @endif
   <!--start wrapper-->
   <div class="wrapper">
     @yield('header')
@@ -60,8 +62,10 @@
   <script src="/plugins/metismenu/js/metisMenu.min.js"></script>
   <script src="/plugins/datatable/js/jquery.dataTables.min.js"></script>
 	<script src="/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+  <script src="/plugins/sweetalert2/dist/sweetalert2.all.js"></script>
   <!--app-->
   <script src="/js/app.js"></script>
+  <script src="/js/notification.js"></script>
 
 </body>
 

@@ -165,6 +165,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name'      => 'full name',
+        'username'  => 'username',
+        'email'     => 'email address',
+        'password'  => 'password',
+        'repeat'    => 'repeat password'
+    ],
 
 ];
