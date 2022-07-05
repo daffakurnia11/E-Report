@@ -32,17 +32,11 @@
 
   <!--start wrapper-->
   <div class="wrapper">
-    @include('layouts.header')
+    @yield('header')
 
-    @include('layouts.sidebar')
-
-    <!--start content-->
-      <main class="page-content">
+    @yield('sidebar')
           
-        @yield('content')
-        
-      </main>
-    <!--end page main-->
+    @yield('content')
 
     <!--start overlay-->
     <div class="overlay nav-toggle-icon"></div>
@@ -52,7 +46,7 @@
       <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
     <!--End Back To Top Button-->
 
-    @include('layouts.switcher')
+    @yield('switcher')
 
   </div>
   <!--end wrapper-->
