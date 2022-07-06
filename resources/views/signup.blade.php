@@ -55,6 +55,20 @@
                 @enderror
               </div>
               <div class="col-12">
+                <label for="phone" class="form-label">Phone</label>
+                <div class="ms-auto position-relative">
+                  <div class="position-absolute top-50 translate-middle-y search-icon px-3">
+                    +62
+                  </div>
+                  <input type="text" class="form-control radius-30 ps-5 @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="phone Address" value="{{ old('phone') }}">
+                </div>
+                @error('phone')
+                <small class="d-block ms-2 mt-1 text-danger">
+                  {{ $message }}
+                </small>
+                @enderror
+              </div>
+              <div class="col-12">
                 <label for="password" class="form-label">Password</label>
                 <div class="ms-auto position-relative">
                   <div class="position-absolute top-50 translate-middle-y search-icon px-3">

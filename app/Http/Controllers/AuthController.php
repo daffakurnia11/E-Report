@@ -21,9 +21,18 @@ class AuthController extends Controller
             'password'  => 'required|min:4',
         ]);
         if (Auth::attempt($credentials)) {
-            return redirect('/')->with('message', "Sign In Success");
-        }
+            if (auth()->user()->verified_at == null) {
+                Auth::logout();
 
+                $request->session()->invalidate();
+
+                $request->session()->regenerateToken();
+
+                return redirect('/signin')->with('message', 'Not Verified');
+            } else {
+                return redirect('/')->with('message', "Sign In Success");
+            }
+        }
         return back()->with('message', 'Sign In Failed');
     }
 
@@ -38,9 +47,17 @@ class AuthController extends Controller
             'name'      => 'required',
             'username'  => 'required|unique:users|alpha-dash',
             'email'     => 'required|email:dns|unique:users',
+            'phone'     => 'required|numeric|min:10',
             'password'  => 'required|min:4',
             'repeat'    => 'required|min:4|same:password'
         ]);
+
+        $firstNumber = substr($validated['phone'], 0, 1);
+        if ($firstNumber === '0') {
+            $validated['phone'] = $validated['phone'];
+        } else {
+            $validated['phone'] = '0' . $validated['phone'];
+        }
 
         $validated['password'] = Hash::make($validated['password']);
         User::create($validated);

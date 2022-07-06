@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -17,11 +18,16 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $roles = ['GM', 'PM', 'PIC'];
+
         return [
-            'name'      => fake()->name(),
-            'username'  => fake()->userName(),
-            'email'     => fake()->safeEmail(),
-            'password'  => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'name'          => fake()->name(),
+            'username'      => fake()->userName(),
+            'email'         => fake()->safeEmail(),
+            'phone'         => fake()->phoneNumber(),
+            'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'roles'         => $roles[mt_rand(0, 2)],
+            'verified_at'   => fake()->dateTime()
         ];
     }
 

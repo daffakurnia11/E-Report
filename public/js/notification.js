@@ -38,6 +38,15 @@ if (flashdata) {
       confirmButtonText: 'Sign in now!'
     })
   }
+  // Not Verified
+  if (flashdata == 'Not Verified') {
+    Swal.fire({
+      icon: 'error',
+      title: flashdata,
+      text: 'Please contact the administrator!',
+      confirmButtonColor: '#3461ff'
+    })
+  }
   // Sign In Failed
   if (flashdata == 'Sign In Failed') {
     Swal.fire({

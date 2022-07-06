@@ -36,7 +36,8 @@ class DashboardController extends Controller
         $validate = $request->validate([
             'name'      => 'required',
             'username'  => $usernameValidator,
-            'email'     => $emailValidator
+            'email'     => $emailValidator,
+            'phone'     => 'required|min:10'
         ]);
 
         $user->update($validate);

@@ -48,6 +48,7 @@
               <th>Name</th>
               <th>Username</th>
               <th>Email</th>
+              <th>Phone</th>
               <th>Roles</th>
               <th>Status</th>
               <th>Action</th>
@@ -60,6 +61,7 @@
               <td class="align-middle">{{ $user->name }}</td>
               <td class="align-middle">{{ $user->username }}</td>
               <td class="align-middle">{{ $user->email }}</td>
+              <td class="align-middle">{{ $user->phone }}</td>
               <td class="text-center align-middle">{{ $user->roles ?: 'Not signed' }}</td>
               <td class="text-center align-middle">{{ $user->verified_at ?: 'Not verified' }}</td>
               <td class="text-center align-middle">
@@ -81,6 +83,7 @@
               <th>Name</th>
               <th>Username</th>
               <th>Email</th>
+              <th>Phone</th>
               <th>Roles</th>
               <th>Status</th>
               <th>Action</th>

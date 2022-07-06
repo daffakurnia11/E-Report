@@ -20,11 +20,12 @@ class DatabaseSeeder extends Seeder
             'name'          => 'Daffa Kurnia Fatah',
             'username'      => 'daffakurnia11',
             'email'         => 'daffakurniaf11@gmail.com',
+            'phone'         => '085156317473',
             'password'      => Hash::make('password'),
             'roles'         => 'Admin',
             'verified_at'   => Carbon::now()
         ]);
 
-        \App\Models\User::factory(5)->create();
+        \App\Models\User::factory(19)->create();
     }
 }
