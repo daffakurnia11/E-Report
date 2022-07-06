@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function authorization(Request $request)
     {
         $credentials = $request->validate([
-            'email'     => 'required|email:dns',
+            'username'  => 'required',
             'password'  => 'required|min:4',
         ]);
         if (Auth::attempt($credentials)) {
@@ -36,7 +36,7 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'name'      => 'required',
-            'username'  => 'required|unique:users',
+            'username'  => 'required|unique:users|alpha-dash',
             'email'     => 'required|email:dns|unique:users',
             'password'  => 'required|min:4',
             'repeat'    => 'required|min:4|same:password'

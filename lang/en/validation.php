@@ -170,7 +170,8 @@ return [
         'username'  => 'username',
         'email'     => 'email address',
         'password'  => 'password',
-        'repeat'    => 'repeat password'
+        'repeat'    => 'repeat password',
+        'oldpass'   => 'old password'
     ],
 
 ];

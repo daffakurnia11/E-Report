@@ -13,12 +13,12 @@
             @csrf
             <div class="row g-3">
               <div class="col-12">
-                <label for="email" class="form-label">Email Address</label>
+                <label for="username" class="form-label">Enter Username</label>
                 <div class="ms-auto position-relative">
                   <div class="position-absolute top-50 translate-middle-y search-icon px-3">
                     <i class="bi bi-envelope-fill"></i>
                   </div>
-                  <input type="email" class="form-control radius-30 ps-5" name="email" id="email" placeholder="Email Address">
+                  <input type="text" class="form-control radius-30 ps-5" name="username" id="username" placeholder="Enter your username">
                 </div>
               </div>
               <div class="col-12">
@@ -27,7 +27,7 @@
                   <div class="position-absolute top-50 translate-middle-y search-icon px-3">
                     <i class="bi bi-lock-fill"></i>
                   </div>
-                  <input type="password" class="form-control radius-30 ps-5" name="password" id="password" placeholder="Enter Password">
+                  <input type="password" class="form-control radius-30 ps-5" name="password" id="password" placeholder="Enter the password">
                 </div>
               </div>
               <div class="col-12">
