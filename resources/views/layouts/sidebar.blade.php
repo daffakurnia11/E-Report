@@ -19,6 +19,8 @@
         <div class="menu-title">Dashboard</div>
       </a>
     </li>
+
+    @can('admin')
     <li class="menu-label">Administrator</li>
     <li class="{{ Request::is('/user') ?? 'mm-active' }}">
       <a href="/user">
@@ -26,7 +28,21 @@
         </div>
         <div class="menu-title">User Management</div>
       </a>
-    </li>
+    </li>    
+    @endcan
+
+    @can('gm')
+    <li class="menu-label">General Manager</li>
+    @endcan
+
+    @can('pm')
+    <li class="menu-label">Project Manager</li>
+    @endcan
+
+    @can('pic')
+    <li class="menu-label">Person In Charge</li>
+    @endcan
+
   </ul>
   <!--end navigation-->
 </aside>

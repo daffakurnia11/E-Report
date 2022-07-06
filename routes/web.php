@@ -33,6 +33,6 @@ Route::middleware('auth')->group(function () {
         Route::put('/profile/{user}/update', 'updateProfile');
         Route::put('/profile/{user}/changepass', 'changepass');
     });
-    Route::resource('user', UserController::class)->except(['create', 'store', 'show']);
+    Route::resource('user', UserController::class)->except(['create', 'store', 'show'])->middleware('admin');
     Route::get('user/{user}/resetpass', [UserController::class, 'resetpass']);
 });
