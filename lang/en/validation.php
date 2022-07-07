@@ -166,12 +166,14 @@ return [
     */
 
     'attributes' => [
-        'name'      => 'full name',
-        'username'  => 'username',
-        'email'     => 'email address',
-        'password'  => 'password',
-        'repeat'    => 'repeat password',
-        'oldpass'   => 'old password'
+        'name'              => 'full name',
+        'username'          => 'username',
+        'email'             => 'email address',
+        'password'          => 'password',
+        'repeat'            => 'repeat password',
+        'oldpass'           => 'old password',
+        'contract_start'    => 'contract start date',
+        'contract_ended'    => 'contract end date'
     ],
 
 ];

@@ -18,6 +18,25 @@ $(function () {
   });
 });
 
+$(function () {
+  $('.confirmAlert').on('click', function (e) {
+    const url = $(this).attr('href');
+    e.preventDefault();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3461ff',
+      cancelButtonColor: '#d33'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = url;
+      }
+    })
+  });
+});
+
 if (flashdata) {
   // Access Denied
   if (flashdata == 'Access Denied') {
@@ -119,6 +138,60 @@ if (flashdata) {
       icon: 'success',
       title: flashdata,
       text: "Your password has been changed!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Failed to submit
+  if (flashdata == 'Failed to submit') {
+    Swal.fire({
+      icon: 'error',
+      title: flashdata,
+      text: "Fill the form correctly and try again!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Project Added
+  if (flashdata == 'Project Added') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "Check the project that you added!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Project Updated
+  if (flashdata == 'Project Updated') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "Check the project that you updated!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Project Deleted
+  if (flashdata == 'Project Deleted') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "The project has been deleted!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Project Finished
+  if (flashdata == 'Project Finished') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "The project has been finished!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Project Assigned
+  if (flashdata == 'Project Assigned') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "The project assigned to Project Manager!",
       confirmButtonColor: '#3461ff'
     })
   }

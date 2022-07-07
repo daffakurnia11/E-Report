@@ -116,4 +116,8 @@ $(function () {
 		$('#example').DataTable();
 	});
 
+	$('.datePicker').bootstrapMaterialDatePicker({
+		time: false
+	});
+
 });

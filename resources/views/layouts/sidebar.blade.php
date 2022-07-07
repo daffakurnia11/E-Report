@@ -33,6 +33,13 @@
 
     @can('gm')
     <li class="menu-label">General Manager</li>
+    <li class="{{ Request::is('/project') ?? 'mm-active' }}">
+      <a href="/project">
+        <div class="parent-icon"><i class="bi bi-list-check"></i>
+        </div>
+        <div class="menu-title">Project Management</div>
+      </a>
+    </li>
     @endcan
 
     @can('pm')

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,4 +36,8 @@ Route::middleware('auth')->group(function () {
     });
     Route::resource('user', UserController::class)->except(['create', 'store', 'show'])->middleware('admin');
     Route::get('user/{user}/resetpass', [UserController::class, 'resetpass']);
+    Route::post('project/{project}', [ProjectController::class, 'update']);
+    Route::get('project/{project}/mark-as-done', [ProjectController::class, 'mark_as_done']);
+    Route::post('project/{project}/add-pm', [ProjectController::class, 'add_pm']);
+    Route::resource('project', ProjectController::class)->except(['create', 'edit', 'update']);
 });
