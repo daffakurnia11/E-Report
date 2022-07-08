@@ -18,14 +18,16 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory()->create([
             'name'          => 'Daffa Kurnia Fatah',
-            'username'      => 'daffakurnia11',
-            'email'         => 'daffakurniaf11@gmail.com',
+            'username'      => 'admin',
+            'email'         => 'admin@gmail.com',
             'phone'         => '085156317473',
             'password'      => Hash::make('password'),
             'roles'         => 'Admin',
             'verified_at'   => Carbon::now()
         ]);
 
-        \App\Models\User::factory(19)->create();
+        \App\Models\User::factory(9)->create();
+
+        \App\Models\Project::factory(20)->create();
     }
 }
