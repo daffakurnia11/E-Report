@@ -28,7 +28,7 @@
             </a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
-            <i class="bi bi-list-check"></i> Project Management
+            <i class="bi bi-diagram-3"></i> Project Management
           </li>
         </ol>
       </nav>

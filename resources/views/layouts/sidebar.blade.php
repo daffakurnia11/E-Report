@@ -35,7 +35,7 @@
     <li class="menu-label">General Manager</li>
     <li class="{{ Request::is('/project') ?? 'mm-active' }}">
       <a href="/project">
-        <div class="parent-icon"><i class="bi bi-list-check"></i>
+        <div class="parent-icon"><i class="bi bi-diagram-3"></i>
         </div>
         <div class="menu-title">Project Management</div>
       </a>
@@ -44,6 +44,13 @@
 
     @can('pm')
     <li class="menu-label">Project Manager</li>
+    <li class="{{ Request::is('/my-project') ?? 'mm-active' }}">
+      <a href="/my-project">
+        <div class="parent-icon"><i class="bi bi-list-check"></i>
+        </div>
+        <div class="menu-title">Project Data</div>
+      </a>
+    </li>
     @endcan
 
     @can('pic')
