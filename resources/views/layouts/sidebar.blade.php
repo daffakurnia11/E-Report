@@ -70,20 +70,20 @@
       </a>
       <ul class="mm-collapse {{ Request::is('/equipment**') ?? 'mm-show' }}" style="">
         <li class="{{ Request::is('/equipment/gas') ?? 'mm-active' }}"> 
-          <a href="/equipment/gas" target="_blank">
+          <a href="/equipment/gas">
             <i class="bi bi-arrow-right-short"></i> Gas
           </a>
         </li>
         <li class="{{ Request::is('/equipment/electric') ?? 'mm-active' }}"> 
-          <a href="/equipment/electric" target="_blank">
+          <a href="/equipment/electric">
             <i class="bi bi-arrow-right-short"></i> Electric
           </a>
         </li>
-        <li class="{{ Request::is('/equipment/renewable') ?? 'mm-active' }}"> 
-          <a href="/equipment/renewable" target="_blank">
+        {{-- <li class="{{ Request::is('/equipment/renewable') ?? 'mm-active' }}"> 
+          <a href="/equipment/renewable">
             <i class="bi bi-arrow-right-short"></i> Renewable
           </a>
-        </li>
+        </li> --}}
       </ul>
     </li>
     @endcan

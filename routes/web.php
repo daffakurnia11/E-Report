@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Equipment\ElectricController;
+use App\Http\Controllers\Equipment\GasController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -62,5 +64,13 @@ Route::middleware('auth')->group(function () {
     Route::middleware('pic')->group(function () {
         Route::get('my-block', [BlockController::class, 'pic_block']);
         Route::get('my-block/approval/{block}', [BlockController::class, 'pic_approval']);
+        Route::prefix('equipment')->group(function () {
+            // Gas Equipment
+            Route::post('gas/{equipmentGas}', [GasController::class, 'update']);
+            Route::resource('gas', GasController::class)->parameters(['gas' => 'equipmentGas'])->except(['create', 'edit', 'update']);
+            // Electric Equipment
+            Route::post('electric/{equipmentElectric}', [ElectricController::class, 'update']);
+            Route::resource('electric', ElectricController::class)->parameters(['electric' => 'equipmentElectric'])->except(['create', 'edit', 'update']);
+        });
     });
 });

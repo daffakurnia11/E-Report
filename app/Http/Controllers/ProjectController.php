@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Block;
 use App\Models\Project;
 use App\Models\User;
-use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 

@@ -59,4 +59,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Block::class);
     }
+
+    public function equipment_gas()
+    {
+        return $this->hasMany(EquipmentGas::class);
+    }
+
+    public function equipment_electric()
+    {
+        return $this->hasMany(EquipmentElectric::class);
+    }
 }

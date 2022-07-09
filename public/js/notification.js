@@ -232,4 +232,31 @@ if (flashdata) {
       confirmButtonColor: '#3461ff'
     })
   }
+  // Equipment Added
+  if (flashdata == 'Equipment Added') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "Thank you for adding the equipment!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Equipment Updated
+  if (flashdata == 'Equipment Updated') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "Thank you for updating the equipment!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Equipment Deleted
+  if (flashdata == 'Equipment Deleted') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "Thank you for deleting the equipment!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
 }
