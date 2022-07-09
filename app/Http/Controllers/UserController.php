@@ -21,6 +21,35 @@ class UserController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('user.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name'      => 'required',
+            'email'     => 'required|email:dns|unique:users',
+            'phone'     => 'required|numeric|min:10',
+            'password'  => 'required|min:4',
+            'repeat'    => 'required|min:4|same:password',
+            'roles'     => 'required'
+        ]);
+
+        $firstNumber = substr($validated['phone'], 0, 1);
+        if ($firstNumber === '0') {
+            $validated['phone'] = $validated['phone'];
+        } else {
+            $validated['phone'] = '0' . $validated['phone'];
+        }
+
+        $validated['password'] = Hash::make($validated['password']);
+        User::create($validated);
+
+        return redirect('/user')->with('message', 'User created');
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -43,15 +72,12 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if (auth()->user()->username == $user->username) {
+        if (auth()->user()->id == $user->id) {
             return back()->with('message', 'Access Denied');
         }
         $validated = $request->validate([
             'roles'     => 'required',
         ]);
-        if ($request->verify) {
-            $validated['verified_at'] = Carbon::now();
-        }
         $user->update($validated);
 
         return redirect('/user')->with('message', 'User updated');
@@ -65,7 +91,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if (auth()->user()->username == $user->username) {
+        if (auth()->user()->id == $user->id) {
             return back()->with('message', 'Access Denied');
         }
         $user->delete();
@@ -75,7 +101,7 @@ class UserController extends Controller
 
     public function resetpass(User $user)
     {
-        $newpass = Hash::make($user->email);
+        $newpass = Hash::make('password');
         $user->update([
             'password' => $newpass
         ]);

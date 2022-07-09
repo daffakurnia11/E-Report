@@ -18,22 +18,18 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory()->create([
             'name'          => 'Administrator',
-            'username'      => 'admin',
             'email'         => 'admin@gmail.com',
             'phone'         => '085156317473',
             'password'      => Hash::make('admin'),
             'roles'         => 'Admin',
-            'verified_at'   => Carbon::now()
         ]);
 
         \App\Models\User::factory()->create([
             'name'          => 'General Manager Admin',
-            'username'      => 'admin_gm',
             'email'         => 'admin_gm@gmail.com',
             'phone'         => '085156317473',
             'password'      => Hash::make('admin'),
             'roles'         => 'GM',
-            'verified_at'   => Carbon::now()
         ]);
         \App\Models\User::factory(2)->create([
             'roles' => 'GM'
@@ -41,12 +37,10 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory()->create([
             'name'          => 'Project Manager Admin',
-            'username'      => 'admin_pm',
             'email'         => 'admin_pm@gmail.com',
             'phone'         => '085156317473',
             'password'      => Hash::make('admin'),
             'roles'         => 'PM',
-            'verified_at'   => Carbon::now()
         ]);
         \App\Models\User::factory(4)->create([
             'roles' => 'PM'
@@ -54,12 +48,10 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory()->create([
             'name'          => 'PIC Admin',
-            'username'      => 'admin_pic',
             'email'         => 'admin_pic@gmail.com',
             'phone'         => '085156317473',
             'password'      => Hash::make('admin'),
             'roles'         => 'PIC',
-            'verified_at'   => Carbon::now()
         ]);
         \App\Models\User::factory(6)->create([
             'roles' => 'PIC'

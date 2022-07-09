@@ -19,12 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'username',
         'email',
         'password',
         'roles',
-        'phone',
-        'verified_at'
+        'phone'
     ];
 
     /**
@@ -35,20 +33,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'verified_at' => 'datetime',
-    ];
-
-    public function getRouteKeyName()
-    {
-        return 'username';
-    }
 
     public function project()
     {

@@ -17,21 +17,11 @@ class AuthController extends Controller
     public function authorization(Request $request)
     {
         $credentials = $request->validate([
-            'username'  => 'required',
+            'email'     => 'required',
             'password'  => 'required|min:4',
         ]);
         if (Auth::attempt($credentials)) {
-            if (auth()->user()->verified_at == null) {
-                Auth::logout();
-
-                $request->session()->invalidate();
-
-                $request->session()->regenerateToken();
-
-                return redirect('/signin')->with('message', 'Not Verified');
-            } else {
-                return redirect('/')->with('message', "Sign In Success");
-            }
+            return redirect('/')->with('message', "Sign In Success");
         }
         return back()->with('message', 'Sign In Failed');
     }

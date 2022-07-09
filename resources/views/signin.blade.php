@@ -13,12 +13,12 @@
             @csrf
             <div class="row g-3">
               <div class="col-12">
-                <label for="username" class="form-label">Enter Username</label>
+                <label for="email" class="form-label">Enter Email</label>
                 <div class="ms-auto position-relative">
                   <div class="position-absolute top-50 translate-middle-y search-icon px-3">
                     <i class="bi bi-envelope-fill"></i>
                   </div>
-                  <input type="text" class="form-control radius-30 ps-5" name="username" id="username" placeholder="Enter your username">
+                  <input type="email" class="form-control radius-30 ps-5" name="email" id="email" placeholder="Enter your email">
                 </div>
               </div>
               <div class="col-12">
@@ -34,11 +34,6 @@
                 <div class="d-grid">
                   <button type="submit" class="btn btn-primary radius-30">Sign In</button>
                 </div>
-              </div>
-              <div class="col-12">
-                <p class="mb-0 text-center">
-                  Don't have an account yet? <a href="/signup">Sign up here</a>
-                </p>
               </div>
             </div>
           </form>

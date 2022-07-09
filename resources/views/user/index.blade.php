@@ -36,7 +36,10 @@
   </div>
   <!-- End of Title Page -->
 
-  <h6 class="mb-0 text-uppercase">List of Users</h6>
+  <div class="d-flex align-items-center justify-content-between">
+    <h6 class="mb-0 text-uppercase">List of Users</h6>
+    <a href="/user/create" class="btn btn-sm btn-primary">Create new user</a>
+  </div>
   <hr>
   <div class="card">
     <div class="card-body">
@@ -46,11 +49,9 @@
             <tr>
               <th>No</th>
               <th>Name</th>
-              <th>Username</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Roles</th>
-              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -59,16 +60,14 @@
             <tr>
               <td class="text-center align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle">{{ $user->name }}</td>
-              <td class="align-middle">{{ $user->username }}</td>
               <td class="align-middle">{{ $user->email }}</td>
               <td class="align-middle">{{ $user->phone }}</td>
               <td class="text-center align-middle">{{ $user->roles ?: 'Not signed' }}</td>
-              <td class="text-center align-middle">{{ $user->verified_at ?: 'Not verified' }}</td>
               <td class="text-center align-middle">
-                <a href="/user/{{ $user->username }}/edit" class="btn p-0 text-warning">
+                <a href="/user/{{ $user->id }}/edit" class="btn p-0 text-warning">
                   <i class="bi bi-pencil-fill"></i>
                 </a>
-                <form action="/user/{{ $user->username }}" method="post" class="d-inline">
+                <form action="/user/{{ $user->id }}" method="post" class="d-inline">
                   @csrf
                   @method("DELETE")
                   <button type="submit" class="deleteConfirm text-danger btn p-0"><i class="bi bi-trash-fill"></i></button>
@@ -81,11 +80,9 @@
             <tr>
               <th>No</th>
               <th>Name</th>
-              <th>Username</th>
               <th>Email</th>
               <th>Phone</th>
               <th>Roles</th>
-              <th>Status</th>
               <th>Action</th>
             </tr>
           </tfoot>

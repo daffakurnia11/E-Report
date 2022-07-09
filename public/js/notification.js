@@ -96,6 +96,15 @@ if (flashdata) {
       confirmButtonText: 'Thank you!'
     })
   }
+  // User created
+  if (flashdata == 'User created') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: 'Thank you for creating a new user!',
+      confirmButtonColor: '#3461ff'
+    })
+  }
   // User updated
   if (flashdata == 'User updated') {
     Swal.fire({

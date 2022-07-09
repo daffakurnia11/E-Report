@@ -24,8 +24,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/signin', 'signin')->name('login');
         Route::post('/signin', 'authorization');
-        Route::get('/signup', 'signup');
-        Route::post('/signup', 'register');
     });
     Route::post('/logout', 'logout')->middleware('auth');
 });
@@ -39,7 +37,7 @@ Route::middleware('auth')->group(function () {
     });
     // Administrator
     Route::middleware('admin')->group(function () {
-        Route::resource('user', UserController::class)->except(['create', 'store', 'show']);
+        Route::resource('user', UserController::class)->except(['show']);
         Route::get('user/{user}/resetpass', [UserController::class, 'resetpass']);
     });
     // General Manager

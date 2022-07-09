@@ -44,7 +44,7 @@
   <h6 class="mb-0 text-uppercase">Details of {{ $user->name }}</h6>
   <hr>
   <div class="card col-lg-8">
-    <form action="/user/{{ $user->username }}" method="POST">
+    <form action="/user/{{ $user->id }}" method="POST">
       @csrf
       @method("PUT")
       <div class="card-body">
@@ -56,10 +56,6 @@
             <input type="text" readonly class="form-control-plaintext" value="{{ $user->name }}">
           </div>
           <div class="col-sm-6 mb-3">
-            <label class="form-label fw-bold">Username</label>
-            <input type="text" readonly class="form-control-plaintext" value="{{ $user->username }}">
-          </div>
-          <div class="col-sm-6 mb-3">
             <label class="form-label fw-bold">Email</label>
             <input type="text" readonly class="form-control-plaintext" value="{{ $user->email }}">
           </div>
@@ -69,7 +65,7 @@
           </div>
           <div class="col-sm-6 mb-3">
             <label class="form-label fw-bold">Password</label>
-            <a href="/user/{{ $user->username }}/resetpass" class="d-block py-2">Reset Password!</a>
+            <a href="/user/{{ $user->id }}/resetpass" class="d-block py-2">Reset Password!</a>
           </div>
         </div>
         <h6 class="mb-0 mt-3 text-uppercase">Authorization</h6>
@@ -89,17 +85,6 @@
                 {{ $message }}
               </div>
             @enderror
-          </div>
-          <div class="col-sm-6 mb-3">
-            <label class="form-label fw-bold">Status</label>
-            @if ($user->verified_at)
-            <input type="text" readonly class="form-control-plaintext" value="Verified at {{ $user->verified_at }}">
-            @else
-            <div class="form-check py-2">
-              <input class="form-check-input" type="checkbox" name="verify" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">Verify now!</label>
-            </div>
-            @endif
           </div>
         </div>
       </div>
