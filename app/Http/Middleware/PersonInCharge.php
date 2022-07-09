@@ -16,7 +16,7 @@ class PersonInCharge
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->roles === 'Admin' || auth()->user()->roles === 'GM' || auth()->user()->roles === 'PM' || auth()->user()->roles === 'PIC') {
+        if (auth()->user()->roles === 'PIC') {
             return $next($request);
         }
         abort(403);

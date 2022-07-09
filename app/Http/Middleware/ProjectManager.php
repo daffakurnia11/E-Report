@@ -16,7 +16,7 @@ class ProjectManager
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->roles === 'Admin' || auth()->user()->roles === 'GM' || auth()->user()->roles === 'PM') {
+        if (auth()->user()->roles === 'PM') {
             return $next($request);
         }
         abort(403);

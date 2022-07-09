@@ -16,7 +16,7 @@ class GeneralManager
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->roles === 'Admin' || auth()->user()->roles === 'GM') {
+        if (auth()->user()->roles === 'GM') {
             return $next($request);
         }
         abort(403);
