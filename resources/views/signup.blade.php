@@ -2,7 +2,7 @@
 
 @section('content')
     
-<main class="authentication-content">
+<main class="authentication-content my-5">
   <div class="container-fluid">
     <div class="authentication-card">
       <div class="card shadow rounded-0 overflow-hidden">

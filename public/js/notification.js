@@ -195,4 +195,32 @@ if (flashdata) {
       confirmButtonColor: '#3461ff'
     })
   }
+
+  // Block Added
+  if (flashdata == 'Block Added') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "Check the Block that you added!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Block Updated
+  if (flashdata == 'Block Updated') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "Check the Block that you updated!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Block Deleted
+  if (flashdata == 'Block Deleted') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "The block has been deleted!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
 }

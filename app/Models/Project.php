@@ -22,4 +22,9 @@ class Project extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function block()
+    {
+        return $this->hasMany(Block::class);
+    }
 }

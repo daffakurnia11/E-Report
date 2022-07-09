@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Block;
 use App\Models\Project;
 use App\Models\User;
 use GuzzleHttp\Handler\Proxy;
@@ -129,5 +130,12 @@ class ProjectController extends Controller
             'user_id'   => $request->user_id
         ]);
         return redirect('/project')->with('message', 'Project Assigned');
+    }
+
+    public function pm_project()
+    {
+        return view('project.pm-project', [
+            'projects'  => Project::where('user_id', auth()->user()->id)->get()
+        ]);
     }
 }

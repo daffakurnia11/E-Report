@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlockController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
@@ -45,5 +46,16 @@ Route::middleware('auth')->group(function () {
         Route::get('project/{project}/mark-as-done', [ProjectController::class, 'mark_as_done']);
         Route::post('project/{project}/add-pm', [ProjectController::class, 'add_pm']);
         Route::resource('project', ProjectController::class)->except(['create', 'edit', 'update']);
+    });
+    // Project Manager
+    Route::middleware('pm')->group(function () {
+        Route::get('my-project', [ProjectController::class, 'pm_project']);
+        Route::prefix('my-project/{project}')->controller(BlockController::class)->group(function () {
+            Route::get('/blocks', 'index');
+            Route::post('/blocks', 'store');
+            Route::get('/blocks/{block}', 'show');
+            Route::post('/blocks/{block}', 'update');
+            Route::delete('/block/{block}', 'destroy');
+        });
     });
 });
