@@ -151,58 +151,28 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-6 mb-3">
-              <label for="code" class="form-label">Project Code</label>
-              <input required type="text" class="form-control @error('code') is-invalid @enderror" name="code" id="code" value="{{ old('code') }}">
-              @error('code')
-              <div class="invalid-feedback">
-                {{ $message }}
-              </div>
-              @enderror
+              <label for="code" class="form-label">Project Code*</label>
+              <input required type="text" class="form-control" name="code" id="code" value="{{ old('code') }}">
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="ship_name" class="form-label">Ship Name</label>
-              <input required type="text" class="form-control @error('ship_name') is-invalid @enderror" name="ship_name" id="ship_name" value="{{ old('ship_name') }}">
-              @error('ship_name')
-              <div class="invalid-feedback">
-                {{ $message }}
-              </div>
-              @enderror
+              <label for="ship_name" class="form-label">Ship Name*</label>
+              <input required type="text" class="form-control" name="ship_name" id="ship_name" value="{{ old('ship_name') }}">
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="ship_owner" class="form-label">Ship Owner</label>
-              <input required type="text" class="form-control @error('ship_owner') is-invalid @enderror" name="ship_owner" id="ship_owner" value="{{ old('ship_owner') }}">
-              @error('ship_owner')
-              <div class="invalid-feedback">
-                {{ $message }}
-              </div>
-              @enderror
+              <label for="ship_owner" class="form-label">Ship Owner*</label>
+              <input required type="text" class="form-control" name="ship_owner" id="ship_owner" value="{{ old('ship_owner') }}">
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="ship_size" class="form-label">Ship Size</label>
-              <input required type="text" class="form-control @error('ship_size') is-invalid @enderror" name="ship_size" id="ship_size" value="{{ old('ship_size') }}">
-              @error('ship_size')
-              <div class="invalid-feedback">
-                {{ $message }}
-              </div>
-              @enderror
+              <label for="ship_size" class="form-label">Ship Size*</label>
+              <input required type="text" class="form-control" name="ship_size" id="ship_size" value="{{ old('ship_size') }}">
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="contract_start" class="form-label">Contract Start</label>
-              <input required type="text" class="result form-control datePicker @error('contract_start') is-invalid @enderror" name="contract_start" id="contract_start" value="{{ old('contract_start') }}">
-              @error('contract_start')
-              <div class="invalid-feedback">
-                {{ $message }}
-              </div>
-              @enderror
+              <label for="contract_start" class="form-label">Contract Start*</label>
+              <input required type="text" class="result form-control datePicker" name="contract_start" id="contract_start" value="{{ old('contract_start') }}">
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="contract_ended" class="form-label">Contract End</label>
-              <input required type="text" class="result form-control datePicker @error('contract_ended') is-invalid @enderror" name="contract_ended" id="contract_ended" value="{{ old('contract_ended') }}">
-              @error('contract_ended')
-              <div class="invalid-feedback">
-                {{ $message }}
-              </div>
-              @enderror
+              <label for="contract_ended" class="form-label">Contract End*</label>
+              <input required type="text" class="result form-control datePicker" name="contract_ended" id="contract_ended" value="{{ old('contract_ended') }}">
             </div>
             <div class="col-12 mb-3">
               <label for="user_id" class="form-label">Project Manager</label>
@@ -214,6 +184,7 @@
               </select>
             </div>
           </div>
+          <small class="text-danger">*) Field must be filled (required)</small>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

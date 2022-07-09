@@ -156,6 +156,7 @@
               <input type="text" class="form-control" name="spesification" id="spesification" value="{{ old('spesification') }}">
             </div>
           </div>
+          <small class="text-danger">*) Field must be filled (required)</small>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

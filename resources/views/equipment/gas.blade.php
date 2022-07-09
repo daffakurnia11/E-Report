@@ -147,6 +147,7 @@
               <input type="text" class="form-control" name="activity" id="activity" value="{{ old('activity') }}">
             </div>
           </div>
+          <small class="text-danger">*) Field must be filled (required)</small>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

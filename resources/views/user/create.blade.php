@@ -51,7 +51,7 @@
         <hr>
         <div class="row">
           <div class="col-12 col-lg-4 mb-3">
-            <label for="name" class="form-label">Full Name</label>
+            <label for="name" class="form-label">Full Name*</label>
             <div class="ms-auto position-relative">
               <div class="position-absolute top-50 translate-middle-y search-icon px-3">
                 <i class="bi bi-person-fill"></i>
@@ -65,7 +65,7 @@
             @enderror
           </div>
           <div class="col-sm-6 col-lg-4 mb-3">
-            <label for="roles" class="form-label">Roles</label>
+            <label for="roles" class="form-label">Roles*</label>
             <div class="ms-auto position-relative">
               <div class="position-absolute top-50 translate-middle-y search-icon px-3">
                 <i class="bi bi-person-badge"></i>
@@ -85,7 +85,7 @@
             @enderror
           </div>
           <div class="col-sm-6 col-lg-4 mb-3">
-            <label for="phone" class="form-label">Phone</label>
+            <label for="phone" class="form-label">Phone*</label>
             <div class="ms-auto position-relative">
               <div class="position-absolute top-50 translate-middle-y search-icon px-3">
                 +62
@@ -99,7 +99,7 @@
             @enderror
           </div>
           <div class="col-sm-6 col-lg-4 mb-3">
-            <label for="email" class="form-label">Email Address</label>
+            <label for="email" class="form-label">Email Address*</label>
             <div class="ms-auto position-relative">
               <div class="position-absolute top-50 translate-middle-y search-icon px-3">
                 <i class="bi bi-envelope-fill"></i>
@@ -113,7 +113,7 @@
             @enderror
           </div>
           <div class="col-sm-6 col-lg-4 mb-3">
-            <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label">Password*</label>
             <div class="ms-auto position-relative">
               <div class="position-absolute top-50 translate-middle-y search-icon px-3">
                 <i class="bi bi-lock-fill"></i>
@@ -127,7 +127,7 @@
             @enderror
           </div>
           <div class="col-sm-6 col-lg-4 mb-3">
-            <label for="repeat" class="form-label">Repeat Password</label>
+            <label for="repeat" class="form-label">Repeat Password*</label>
             <div class="ms-auto position-relative">
               <div class="position-absolute top-50 translate-middle-y search-icon px-3">
                 <i class="bi bi-lock-fill"></i>
@@ -141,6 +141,7 @@
             @enderror
           </div>
         </div>
+        <small class="text-danger">*) Field must be filled (required)</small>
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary">Create user</button>

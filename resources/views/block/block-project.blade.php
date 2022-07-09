@@ -128,22 +128,22 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-6 mb-3">
-              <label for="block_name" class="form-label">Block name</label>
+              <label for="block_name" class="form-label">Block name*</label>
               <input required type="text" class="form-control" name="block_name" id="block_name" value="{{ old('block_name') }}">
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="block_weight" class="form-label">Block Weight</label>
+              <label for="block_weight" class="form-label">Block Weight*</label>
               <div class="input-group">
                 <input required type="number" class="form-control" name="block_weight" id="block_weight" value="{{ old('block_weight') }}">
                 <span class="input-group-text" id="basic-addon2">Ton</span>
               </div>
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="sequence" class="form-label">Erection Sequence</label>
+              <label for="sequence" class="form-label">Erection Sequence*</label>
               <input required type="text" class="form-control" name="sequence" id="sequence" value="{{ old('sequence') }}">
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="user_id" class="form-label">Project Manager</label>
+              <label for="user_id" class="form-label">Project Manager*</label>
               <select required class="form-select form-select-sm" aria-label=".form-select-sm example" name="user_id" id="user_id">
                 <option selected="" disabled>--Choose PIC--</option>
                 @foreach ($managers as $manager)
@@ -152,15 +152,15 @@
               </select>
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="build_start" class="form-label">Build Start</label>
+              <label for="build_start" class="form-label">Build Start*</label>
               <input required type="text" class="result form-control datePicker" name="build_start" id="build_start" value="{{ old('build_start') }}">
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="build_ended" class="form-label">Build End</label>
+              <label for="build_ended" class="form-label">Build End*</label>
               <input required type="text" class="result form-control datePicker" name="build_ended" id="build_ended" value="{{ old('build_ended') }}">
             </div>
             <div class="col-12 mb-3">
-              <label for="filename" class="form-label d-block mb-1">Block File</label>
+              <label for="filename" class="form-label d-block mb-1">Block File*</label>
               <span id="currentFile" class="text-primary mb-1">
                 Current file : 
                 <a href="" target="_blank"></a>
@@ -168,6 +168,7 @@
               <input required class="form-control" type="file"name="filename" id="filename" accept=".jpg,.jpeg,.png,.pdf">
             </div>
           </div>
+          <small class="text-danger">*) Field must be filled (required)</small>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
