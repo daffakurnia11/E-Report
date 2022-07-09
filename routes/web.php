@@ -58,4 +58,9 @@ Route::middleware('auth')->group(function () {
             Route::delete('/block/{block}', 'destroy');
         });
     });
+    // Person In Charge
+    Route::middleware('pic')->group(function () {
+        Route::get('my-block', [BlockController::class, 'pic_block']);
+        Route::get('my-block/approval/{block}', [BlockController::class, 'pic_approval']);
+    });
 });

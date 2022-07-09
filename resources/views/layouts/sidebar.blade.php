@@ -55,6 +55,37 @@
 
     @can('pic')
     <li class="menu-label">Person In Charge</li>
+    <li class="{{ Request::is('/my-block') ?? 'mm-active' }}">
+      <a href="/my-block">
+        <div class="parent-icon"><i class="bi bi-boxes"></i>
+        </div>
+        <div class="menu-title">Block Data</div>
+      </a>
+    </li>
+    <li class="{{ Request::is('/equipment**') ?? 'mm-active' }}">
+      <a class="has-arrow" href="javascript:;" aria-expanded="true">
+        <div class="parent-icon"><i class="bi bi-plugin"></i>
+        </div>
+        <div class="menu-title">Equipment</div>
+      </a>
+      <ul class="mm-collapse {{ Request::is('/equipment**') ?? 'mm-show' }}" style="">
+        <li class="{{ Request::is('/equipment/gas') ?? 'mm-active' }}"> 
+          <a href="/equipment/gas" target="_blank">
+            <i class="bi bi-arrow-right-short"></i> Gas
+          </a>
+        </li>
+        <li class="{{ Request::is('/equipment/electric') ?? 'mm-active' }}"> 
+          <a href="/equipment/electric" target="_blank">
+            <i class="bi bi-arrow-right-short"></i> Electric
+          </a>
+        </li>
+        <li class="{{ Request::is('/equipment/renewable') ?? 'mm-active' }}"> 
+          <a href="/equipment/renewable" target="_blank">
+            <i class="bi bi-arrow-right-short"></i> Renewable
+          </a>
+        </li>
+      </ul>
+    </li>
     @endcan
 
   </ul>

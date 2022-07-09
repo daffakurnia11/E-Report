@@ -17,21 +17,11 @@ class BlockController extends Controller
      */
     public function index(Project $project)
     {
-        return view('project.block-project', [
+        return view('block.block-project', [
             'project'   => $project,
             'blocks'    => Block::where('project_id', $project->id)->get(),
             'managers'  => User::where('roles', 'PIC')->get()
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -86,17 +76,6 @@ class BlockController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Block  $block
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Block $block)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -148,5 +127,20 @@ class BlockController extends Controller
         }
         $block->delete();
         return back()->with('message', 'Block Deleted');
+    }
+
+    public function pic_block()
+    {
+        return view('block.my-block', [
+            'blocks'    => Block::where('user_id', auth()->user()->id)->get()
+        ]);
+    }
+
+    public function pic_approval(Block $block)
+    {
+        $block->update([
+            'status'    => 'Preparation'
+        ]);
+        return back()->with('message', 'Block Approved');
     }
 }

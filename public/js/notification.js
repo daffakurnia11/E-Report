@@ -223,4 +223,13 @@ if (flashdata) {
       confirmButtonColor: '#3461ff'
     })
   }
+  // Block Approved
+  if (flashdata == 'Block Approved') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "The block approved and ready to process!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
 }
