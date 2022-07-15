@@ -17,4 +17,9 @@ class EquipmentElectric extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function equipment()
+    {
+        return $this->hasMany(Equipment::class);
+    }
 }

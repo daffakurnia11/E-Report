@@ -5,8 +5,10 @@ use App\Http\Controllers\BlockController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Equipment\ElectricController;
 use App\Http\Controllers\Equipment\GasController;
+use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
+use App\Models\Block;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,8 +62,21 @@ Route::middleware('auth')->group(function () {
     });
     // Person In Charge
     Route::middleware('pic')->group(function () {
-        Route::get('my-block', [BlockController::class, 'pic_block']);
-        Route::get('my-block/approval/{block}', [BlockController::class, 'pic_approval']);
+        Route::prefix('my-block')->group(function () {
+            Route::controller(BlockController::class)->group(function () {
+                Route::get('/', 'pic_block');
+                Route::get('/approval/{block}', 'approval');
+                Route::get('/update/{block}', 'update_status');
+            });
+            Route::controller(EquipmentController::class)->group(function () {
+                Route::get('/{block}', 'index');
+                Route::post('/{block}', 'store');
+                Route::get('/{block}/{equipment}', 'show');
+                Route::post('/{block}/{equipment}', 'update');
+                Route::delete('/{block}/{equipment}', 'destroy');
+                Route::get('/{block}/{equipment}/finished', 'finished');
+            });
+        });
         Route::prefix('equipment')->group(function () {
             // Gas Equipment
             Route::post('gas/{equipmentGas}', [GasController::class, 'update']);

@@ -122,14 +122,14 @@
             <div class="col-sm-6 mb-3">
               <label for="flowmeter" class="form-label">Flowmeter*</label>
               <div class="input-group">
-                <input required type="number" class="form-control" name="flowmeter" id="flowmeter" value="{{ old('flowmeter') }}">
+                <input required type="text" class="form-control" name="flowmeter" id="flowmeter" value="{{ old('flowmeter') }}">
                 <span class="input-group-text" id="basic-addon2">LPM</span>
               </div>
             </div>
             <div class="col-sm-6 mb-3">
               <label for="capacity" class="form-label">Capacity</label>
               <div class="input-group">
-                <input type="number" class="form-control" name="capacity" id="capacity" value="{{ old('capacity') }}">
+                <input type="text" class="form-control" name="capacity" id="capacity" value="{{ old('capacity') }}">
                 <span class="input-group-text">Unit</span>
                 <input type="text" class="form-control" name="unit" value="{{ old('unit') }}">
               </div>

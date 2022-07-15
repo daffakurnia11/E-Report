@@ -268,4 +268,22 @@ if (flashdata) {
       confirmButtonColor: '#3461ff'
     })
   }
+  // Block update failed
+  if (flashdata == 'Block update failed') {
+    Swal.fire({
+      icon: 'error',
+      title: flashdata,
+      text: "Please finish the block progress!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Block update success
+  if (flashdata == 'Block update success') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "New status for the block!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
 }

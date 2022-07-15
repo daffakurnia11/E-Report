@@ -31,10 +31,10 @@ class ElectricController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'          => 'required',
-            'volt'          => 'required|numeric',
-            'ampere'        => 'required|numeric',
-            'watt'          => 'required|numeric',
-            'power_factor'  => 'required|numeric',
+            'volt'          => 'required',
+            'ampere'        => 'required',
+            'watt'          => 'required',
+            'power_factor'  => 'required',
             'quantity'      => 'required|numeric',
             'spesification' => 'nullable'
         ]);

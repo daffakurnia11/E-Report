@@ -47,6 +47,7 @@
           <thead>
             <tr>
               <th>No</th>
+              <th>Code</th>
               <th>Ship Name</th>
               <th>Project Manager</th>
               <th>Block name</th>
@@ -61,6 +62,7 @@
             @foreach ($blocks as $block)
             <tr>
               <td class="text-center align-middle">{{ $loop->iteration }}</td>
+              <td class="align-middle">{{ $block->project->code }}</td>
               <td class="align-middle">{{ $block->project->ship_name }}</td>
               <td class="align-middle">{{ $block->project->user->name }}</td>
               <td class="align-middle">{{ $block->block_name }}</td>
@@ -75,13 +77,14 @@
               </td>
               <td class="align-middle">
                 <span class="badge bg-info text-dark">{{ $block->status }}</span>
-                </td>
+              </td>
               <td class="text-center align-middle">
-                <button type="button" class="btn p-0 text-warning editBlock" data-bs-toggle="modal" data-bs-target="#modalBlock" data-block-id="{{ $block->id }}">
-                  <i class="bi bi-pencil-fill"></i>
-                </button>
                 @if ($block->status === 'Waiting for approval')
-                  <a href="/my-block/approval/{{ $block->id }}" class="btn btn-sm text-success confirmAlert" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Approve Block"><i class="bi bi-check2-circle"></i></a>
+                <a href="/my-block/approval/{{ $block->id }}" class="btn btn-sm text-success confirmAlert" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Approve Block"><i class="bi bi-check2-circle"></i></a>
+                @else
+                <a href="/my-block/{{ $block->id }}" class="btn p-0 text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Edit Equipment">
+                  <i class="bi bi-plugin"></i>
+                </a>
                 @endif
               </td>
             </tr>
@@ -90,6 +93,7 @@
           <tfoot>
             <tr>
               <th>No</th>
+              <th>Code</th>
               <th>Ship Name</th>
               <th>Project Manager</th>
               <th>Block name</th>

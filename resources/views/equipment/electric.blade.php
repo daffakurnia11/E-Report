@@ -125,27 +125,27 @@
             <div class="col-sm-6 mb-3">
               <label for="volt" class="form-label">Volt*</label>
               <div class="input-group">
-                <input required type="number" class="form-control" name="volt" id="volt" value="{{ old('volt') }}">
+                <input required type="text" class="form-control" name="volt" id="volt" value="{{ old('volt') }}">
                 <span class="input-group-text" id="basic-addon2">Volt</span>
               </div>
             </div>
             <div class="col-sm-6 mb-3">
               <label for="ampere" class="form-label">Ampere*</label>
               <div class="input-group">
-                <input required type="number" class="form-control" name="ampere" id="ampere" value="{{ old('ampere') }}">
+                <input required type="text" class="form-control" name="ampere" id="ampere" value="{{ old('ampere') }}">
                 <span class="input-group-text" id="basic-addon2">Ampere</span>
               </div>
             </div>
             <div class="col-sm-6 mb-3">
               <label for="watt" class="form-label">Watt*</label>
               <div class="input-group">
-                <input required type="number" class="form-control" name="watt" id="watt" value="{{ old('watt') }}">
+                <input required type="text" class="form-control" name="watt" id="watt" value="{{ old('watt') }}">
                 <span class="input-group-text" id="basic-addon2">Watt</span>
               </div>
             </div>
             <div class="col-sm-6 mb-3">
               <label for="power_factor" class="form-label">Power Factor*</label>
-              <input required type="number" class="form-control" name="power_factor" id="power_factor" value="{{ old('power_factor') }}">
+              <input required type="text" class="form-control" name="power_factor" id="power_factor" value="{{ old('power_factor') }}">
             </div>
             <div class="col-sm-6 mb-3">
               <label for="quantity" class="form-label">Quantity*</label>

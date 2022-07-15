@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Block;
+use App\Models\Equipment;
+use App\Models\EquipmentElectric;
+use App\Models\EquipmentGas;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -136,11 +139,44 @@ class BlockController extends Controller
         ]);
     }
 
-    public function pic_approval(Block $block)
+    public function approval(Block $block)
     {
         $block->update([
             'status'    => 'Preparation'
         ]);
         return back()->with('message', 'Block Approved');
+    }
+
+    public function update_status(Block $block)
+    {
+        $canUpdate = true;
+        $equipment = Equipment::where('block_id', $block->id)->get();
+        foreach ($equipment as $item) {
+            if (!$item->stopped_at) {
+                $canUpdate = false;
+            }
+        }
+        if (!$canUpdate) {
+            return back()->with('message', 'Block update failed');
+        } else {
+            switch ($block->status) {
+                case 'Preparation':
+                    $status = 'Fabrication';
+                    break;
+                case 'Fabrication':
+                    $status = 'Sub Assembly';
+                    break;
+                case 'Sub Assembly':
+                    $status = 'Assembly';
+                    break;
+                default:
+                    $status = 'Erection';
+                    break;
+            }
+            $block->update([
+                'status'    => $status
+            ]);
+            return back()->with('message', 'Block update success');
+        }
     }
 }

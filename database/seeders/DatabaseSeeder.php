@@ -60,5 +60,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Project::factory(20)->create();
 
         \App\Models\Block::factory(100)->create();
+
+        \App\Models\EquipmentGas::factory(25)->create();
+
+        \App\Models\EquipmentElectric::factory(25)->create();
     }
 }

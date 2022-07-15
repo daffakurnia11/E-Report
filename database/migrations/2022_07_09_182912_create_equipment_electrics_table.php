@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('name');
-            $table->integer('volt')->default(0);
-            $table->integer('ampere')->default(0);
-            $table->integer('watt')->default(0);
-            $table->integer('power_factor')->default(0);
+            $table->string('volt')->default(0);
+            $table->string('ampere')->default(0);
+            $table->string('watt')->default(0);
+            $table->string('power_factor')->default(0);
             $table->integer('quantity')->default(1);
             $table->string('spesification')->nullable();
             $table->timestamps();

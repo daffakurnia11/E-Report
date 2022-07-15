@@ -160,12 +160,13 @@
               <input required type="text" class="result form-control datePicker" name="build_ended" id="build_ended" value="{{ old('build_ended') }}">
             </div>
             <div class="col-12 mb-3">
-              <label for="filename" class="form-label d-block mb-1">Block File*</label>
+              <label for="filename" class="form-label d-block mb-1">Block File</label>
               <span id="currentFile" class="text-primary mb-1">
                 Current file : 
                 <a href="" target="_blank"></a>
               </span>
-              <input required class="form-control" type="file"name="filename" id="filename" accept=".jpg,.jpeg,.png,.pdf">
+              <input class="form-control" type="file"name="filename" id="filename" accept=".jpg,.jpeg,.png,.pdf">
+              <small class="text-danger">Format : .jpg, .jpeg, .png, .pdf max 5MB</small>
             </div>
           </div>
           <small class="text-danger">*) Field must be filled (required)</small>
