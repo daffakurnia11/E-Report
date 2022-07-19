@@ -27,4 +27,9 @@ class Block extends Model
     {
         return $this->hasMany(Equipment::class);
     }
+
+    public function equipment_process()
+    {
+        return $this->hasMany(EquipmentProcess::class);
+    }
 }

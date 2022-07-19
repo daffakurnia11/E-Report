@@ -178,7 +178,6 @@
                 @else
                   <span class="d-block">Volt : {{ $item->volt }} Volt</span>
                   <span class="d-block">Ampere : {{ $item->ampere }} Ampere</span>
-                  <span class="d-block">Watt : {{ $item->watt }} Watt</span>
                 @endif
               </td>
               <td class="align-middle text-center">
@@ -189,6 +188,12 @@
               <td class="align-middle text-center">
                 @if (!$item->stopped_at)
                 <a href="/my-block/{{ $block->id }}/{{ $item->id }}/finished" class="btn btn-sm text-success confirmAlert" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Finishing Progress"><i class="bi bi-check2-circle"></i></a>
+                @else
+                  @if ($item->type == 'Gas')
+                  <a href="/report-usage/gas" class="btn btn-sm text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Get usage report"><i class="bi bi-clipboard-data"></i></a>
+                  @else
+                  <a href="/report-usage/electric" class="btn btn-sm text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Get usage report"><i class="bi bi-clipboard-data"></i></a>
+                  @endif
                 @endif
                 <button type="button" class="btn p-0 text-warning editEquipment" data-bs-toggle="modal" data-bs-target="#modalEquipment" data-equipment-id="{{ $item->id }}">
                   <i class="bi bi-pencil-fill"></i>
@@ -196,7 +201,7 @@
                 <form action="/my-block/{{ $block->id }}/{{ $item->id }}" method="post" class="d-inline">
                   @csrf
                   @method("DELETE")
-                  <button type="submit" class="deleteConfirm text-danger btn p-0" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Delete project"><i class="bi bi-trash-fill"></i></button>
+                  <button type="submit" class="deleteConfirm text-danger btn p-0" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Delete equipment"><i class="bi bi-trash-fill"></i></button>
                 </form>
               </td>
             </tr>
@@ -286,13 +291,6 @@
                   <span class="input-group-text" id="basic-addon2">Ampere</span>
                 </div>
               </div>
-              <div class="col-sm-6 mb-3">
-                <label for="watt" class="form-label">Watt*</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" name="watt" id="watt" value="{{ old('watt') }}">
-                  <span class="input-group-text" id="basic-addon2">Watt</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -335,7 +333,6 @@
       $('input[name=flowmeter]').val('');
       $('input[name=volt]').val('');
       $('input[name=ampere]').val('');
-      $('input[name=watt]').val('');
 
       $('option[selected]').removeAttr('selected')
       $('option[disabled]').attr('selected', true)
@@ -362,7 +359,6 @@
             $('input[name=flowmeter]').val(data.equipment.flowmeter);
             $('input[name=volt]').val(data.equipment.volt);
             $('input[name=ampere]').val(data.equipment.ampere);
-            $('input[name=watt]').val(data.equipment.watt);
 
             $('select#equipment_electric').find($('option[selected]')).removeAttr('selected');
             $('select#equipment_electric').find($('option[disabled]')).attr('selected', true);
@@ -374,7 +370,6 @@
             $('input[name=flowmeter]').val(data.equipment.flowmeter);
             $('input[name=volt]').val(data.equipment.volt);
             $('input[name=ampere]').val(data.equipment.ampere);
-            $('input[name=watt]').val(data.equipment.watt);
 
             $('select#equipment_gas').find($('option[selected]')).removeAttr('selected');
             $('select#equipment_gas').find($('option[disabled]')).attr('selected', true);

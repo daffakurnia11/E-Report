@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('flowmeter')->nullable();
             $table->string('volt')->nullable();
             $table->string('ampere')->nullable();
-            $table->string('watt')->nullable();
             $table->string('activity');
             $table->string('status')->nullable();
             $table->timestamps();

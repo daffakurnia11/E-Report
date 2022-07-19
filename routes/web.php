@@ -7,6 +7,7 @@ use App\Http\Controllers\Equipment\ElectricController;
 use App\Http\Controllers\Equipment\GasController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Models\Block;
 use Illuminate\Support\Facades\Route;
@@ -84,6 +85,10 @@ Route::middleware('auth')->group(function () {
             // Electric Equipment
             Route::post('electric/{equipmentElectric}', [ElectricController::class, 'update']);
             Route::resource('electric', ElectricController::class)->parameters(['electric' => 'equipmentElectric'])->except(['create', 'edit', 'update']);
+        });
+        Route::prefix('report-usage')->group(function () {
+            Route::get('gas', [ReportController::class, 'gas_usage']);
+            Route::get('electric', [ReportController::class, 'electric_usage']);
         });
     });
 });

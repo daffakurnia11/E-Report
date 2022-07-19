@@ -6,6 +6,7 @@ use App\Models\Block;
 use App\Models\Equipment;
 use App\Models\EquipmentElectric;
 use App\Models\EquipmentGas;
+use App\Models\EquipmentProcess;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -63,7 +64,6 @@ class EquipmentController extends Controller
                 'equipment_electric_id' => 'required',
                 'volt'      => 'required',
                 'ampere'    => 'required',
-                'watt'      => 'required',
                 'activity'  => 'required'
             ]);
 
@@ -138,7 +138,6 @@ class EquipmentController extends Controller
                 'equipment_electric_id' => 'required',
                 'volt'      => 'required',
                 'ampere'    => 'required',
-                'watt'      => 'required',
                 'activity'  => 'required'
             ]);
 
@@ -167,8 +166,50 @@ class EquipmentController extends Controller
 
     public function finished(Block $block, Equipment $equipment)
     {
+        $finish = Carbon::now();
+
+        $start = $equipment->created_at;
+        $duration = $start->diffInSeconds($finish);
+
+        if ($equipment->type == 'Gas') {
+            $duration = $duration / 60; // Seconds to Minutes
+            $flowmeter = $equipment->flowmeter;
+            $density = $equipment->equipment_gas->density;
+            $liter = ($duration * $flowmeter) / 1000;
+            $gas_usage = $liter * $density;
+
+            EquipmentProcess::create([
+                'block_id'          => $block->id,
+                'equipment_id'      => $equipment->id,
+                'equipment_type'    => $equipment->type,
+                'gas_usage'         => $gas_usage
+            ]);
+        } else {
+            $duration = $duration / 3600; // Seconds to Hours
+            $volt = $equipment->volt;
+            $ampere = $equipment->ampere;
+            $kiloWatt = ($volt * $ampere * (0.5 ** (1 / 3))) / 1000;
+            $kWh = $duration * $kiloWatt;
+
+            $wbp_limit1 = new Carbon('17:00:00');
+            $wbp_limit2 = new Carbon('22:00:00');
+            if ($finish->greaterThan($wbp_limit1) && $finish->lessThan($wbp_limit2)) {
+                $period = 'LWBP';
+            } else {
+                $period = 'WBP';
+            }
+
+            EquipmentProcess::create([
+                'block_id'          => $block->id,
+                'equipment_id'      => $equipment->id,
+                'equipment_type'    => $equipment->type,
+                'period'            => $period,
+                'kWh'               => $kWh
+            ]);
+        }
+
         $equipment->update([
-            'stopped_at'    => Carbon::now()
+            'stopped_at'    => $finish
         ]);
 
         return back()->with('message', 'Equipment Updated');

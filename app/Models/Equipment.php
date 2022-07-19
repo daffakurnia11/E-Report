@@ -10,7 +10,7 @@ class Equipment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'block_id', 'type', 'equipment_gas_id', 'equipment_electric_id', 'flowmeter', 'volt', 'ampere', 'watt', 'activity', 'status', 'stopped_at'
+        'user_id', 'block_id', 'type', 'equipment_gas_id', 'equipment_electric_id', 'flowmeter', 'volt', 'ampere', 'activity', 'status', 'stopped_at'
     ];
 
     public function user()
@@ -31,5 +31,10 @@ class Equipment extends Model
     public function equipment_electric()
     {
         return $this->belongsTo(EquipmentElectric::class);
+    }
+
+    public function equipment_process()
+    {
+        return $this->hasOne(EquipmentProcess::class);
     }
 }
