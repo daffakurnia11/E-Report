@@ -31,12 +31,10 @@ class GasController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'gas_filter'        => 'required',
-            'flowmeter'         => 'required',
-            'capacity'          => 'nullable',
+            'capacity'          => 'nullable|numeric',
             'unit'              => 'nullable',
             'quantity'          => 'required|numeric',
             'density'           => 'nullable',
-            'activity'          => 'nullable'
         ]);
 
         if ($validator->fails()) {
@@ -72,12 +70,10 @@ class GasController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'gas_filter'        => 'required',
-            'flowmeter'         => 'required|numeric',
             'capacity'          => 'nullable|numeric',
             'unit'              => 'nullable',
             'quantity'          => 'required|numeric',
             'density'           => 'nullable',
-            'activity'          => 'nullable'
         ]);
 
         if ($validator->fails()) {

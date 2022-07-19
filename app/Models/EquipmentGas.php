@@ -10,7 +10,7 @@ class EquipmentGas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'gas_filter', 'flowmeter', 'capacity', 'unit', 'quantity', 'activity', 'density'
+        'user_id', 'gas_filter', 'capacity', 'unit', 'quantity', 'density'
     ];
 
     public function user()

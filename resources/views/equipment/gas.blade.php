@@ -52,11 +52,9 @@
             <tr>
               <th>No</th>
               <th>Gas Filter</th>
-              <th>Flowmeter</th>
               <th>Capacity & Unit</th>
               <th>Quantity</th>
               <th>Density</th>
-              <th>Activity</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -65,11 +63,9 @@
             <tr>
               <td class="text-center align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle">{{ $item->gas_filter }}</td>
-              <td class="text-center align-middle">{{ $item->flowmeter }} LPM</td>
               <td class="text-center align-middle">{{ $item->capacity }} {{ $item->unit }}</td>
               <td class="text-center align-middle">{{ $item->quantity }}</td>
               <td class="text-center align-middle">{{ $item->density }}</td>
-              <td class="text-wrap align-middle">{{ $item->activity }}</td>
               <td class="text-center align-middle">
                 <button type="button" class="btn p-0 text-warning editEquipment" data-bs-toggle="modal" data-bs-target="#modalEquipment" data-equipment-id="{{ $item->id }}">
                   <i class="bi bi-pencil-fill"></i>
@@ -87,11 +83,9 @@
             <tr>
               <th>No</th>
               <th>Gas Filter</th>
-              <th>Flowmeter</th>
               <th>Capacity & Unit</th>
               <th>Quantity</th>
               <th>Density</th>
-              <th>Activity</th>
               <th>Action</th>
             </tr>
           </tfoot>
@@ -120,13 +114,6 @@
               <input required type="text" class="form-control" name="gas_filter" id="gas_filter" value="{{ old('gas_filter') }}">
             </div>
             <div class="col-sm-6 mb-3">
-              <label for="flowmeter" class="form-label">Flowmeter*</label>
-              <div class="input-group">
-                <input required type="text" class="form-control" name="flowmeter" id="flowmeter" value="{{ old('flowmeter') }}">
-                <span class="input-group-text" id="basic-addon2">LPM</span>
-              </div>
-            </div>
-            <div class="col-sm-6 mb-3">
               <label for="capacity" class="form-label">Capacity</label>
               <div class="input-group">
                 <input type="text" class="form-control" name="capacity" id="capacity" value="{{ old('capacity') }}">
@@ -141,10 +128,6 @@
             <div class="col-sm-6 mb-3">
               <label for="density" class="form-label">Density</label>
               <input type="text" class="form-control" name="density" id="density" value="{{ old('density') }}">
-            </div>
-            <div class="col-sm-6 mb-3">
-              <label for="activity" class="form-label">Activity</label>
-              <input type="text" class="form-control" name="activity" id="activity" value="{{ old('activity') }}">
             </div>
           </div>
           <small class="text-danger">*) Field must be filled (required)</small>
@@ -167,12 +150,10 @@
       $('.modal-title').text('Add new gas equipment')
       $('.formModal').attr('action', baseUrl + '/equipment/gas')
       $('input[name=gas_filter]').val('')
-      $('input[name=flowmeter]').val('')
       $('input[name=capacity]').val('')
       $('input[name=unit]').val('')
       $('input[name=quantity]').val('')
       $('input[name=density]').val('')
-      $('input[name=activity]').val('')
       $('.formSubmit').text('Add equipment')
     })
     $('.editEquipment').on('click', function () {
@@ -186,12 +167,10 @@
           $('.modal-title').text('Edit equipment ' + data.equipment.gas_filter)
           $('.formModal').attr('action', baseUrl + '/equipment/gas/' + data.equipment.id)
           $('input[name=gas_filter]').val(data.equipment.gas_filter)
-          $('input[name=flowmeter]').val(data.equipment.flowmeter)
           $('input[name=capacity]').val(data.equipment.capacity)
           $('input[name=unit]').val(data.equipment.unit)
           $('input[name=quantity]').val(data.equipment.quantity)
           $('input[name=density]').val(data.equipment.density)
-          $('input[name=activity]').val(data.equipment.activity)
           $('.formSubmit').text('Edit equipment')
         }
       })

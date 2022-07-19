@@ -17,11 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('gas_filter');
-            $table->string('flowmeter');
             $table->string('capacity')->nullable();
             $table->string('unit')->nullable();
             $table->integer('quantity')->default(1);
-            $table->string('activity')->nullable();
             $table->string('density')->nullable();
             $table->timestamps();
         });

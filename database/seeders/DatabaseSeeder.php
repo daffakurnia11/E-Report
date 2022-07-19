@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -60,6 +59,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Project::factory(10)->create();
 
         \App\Models\Block::factory(50)->create();
+
+        $data_path = 'app/Data/ereport.sql';
+        DB::unprepared(file_get_contents($data_path));
 
         // \App\Models\EquipmentGas::factory(25)->create();
 
