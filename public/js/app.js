@@ -113,8 +113,16 @@ $(function () {
 	})
 
 	$(document).ready(function () {
-		$('#example').DataTable();
-		$('#example2').DataTable();
+		var table = $('#example').DataTable({
+			buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']
+		});
+		table.buttons().container()
+			.appendTo('#example_wrapper .col-md-6:eq(0)');
+		var table = $('#example2').DataTable({
+			buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']
+		});
+		table.buttons().container()
+			.appendTo('#example2_wrapper .col-md-6:eq(0)');
 	});
 
 	$('.datePicker').bootstrapMaterialDatePicker({
