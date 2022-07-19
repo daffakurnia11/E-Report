@@ -94,9 +94,6 @@ Route::middleware('auth')->group(function () {
             Route::post('electric/{equipmentElectric}', [ElectricController::class, 'update']);
             Route::resource('electric', ElectricController::class)->parameters(['electric' => 'equipmentElectric'])->except(['create', 'edit', 'update']);
         });
-        Route::prefix('report-usage')->group(function () {
-            Route::get('gas', [ReportController::class, 'gas_usage']);
-            Route::get('electric', [ReportController::class, 'electric_usage']);
-        });
+        Route::get('report-usage/{block}', [EquipmentController::class, 'get_report']);
     });
 });

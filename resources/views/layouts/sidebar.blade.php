@@ -93,25 +93,6 @@
         </li> --}}
       </ul>
     </li>
-    <li class="{{ Request::is('/report-usage**') ?? 'mm-active' }}">
-      <a class="has-arrow" href="javascript:;" aria-expanded="true">
-        <div class="parent-icon"><i class="bi bi-clipboard-data"></i>
-        </div>
-        <div class="menu-title">Report Usage</div>
-      </a>
-      <ul class="mm-collapse {{ Request::is('/report-usage**') ?? 'mm-show' }}" style="">
-        <li class="{{ Request::is('/report-usage/gas') ?? 'mm-active' }}"> 
-          <a href="/report-usage/gas">
-            <i class="bi bi-arrow-right-short"></i> Gas
-          </a>
-        </li>
-        <li class="{{ Request::is('/report-usage/electric') ?? 'mm-active' }}"> 
-          <a href="/report-usage/electric">
-            <i class="bi bi-arrow-right-short"></i> Electric
-          </a>
-        </li>
-      </ul>
-    </li>
     @endcan
 
   </ul>

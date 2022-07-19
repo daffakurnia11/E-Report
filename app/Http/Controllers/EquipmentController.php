@@ -27,17 +27,6 @@ class EquipmentController extends Controller
             'equipments'    => Equipment::where('block_id', $block->id)->get()
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -98,17 +87,6 @@ class EquipmentController extends Controller
             'block' => $block,
             'tools' => $tools
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Block  $block
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Block $block)
-    {
-        //
     }
 
     /**
@@ -213,5 +191,14 @@ class EquipmentController extends Controller
         ]);
 
         return back()->with('message', 'Equipment Updated');
+    }
+
+    public function get_report(Block $block)
+    {
+        return view('block.report-usage', [
+            'electrics' => EquipmentProcess::where('equipment_type', 'Electric')->where('block_id', $block->id)->get(),
+            'gases'     => EquipmentProcess::where('equipment_type', 'Gas')->where('block_id', $block->id)->get(),
+            'block'     => $block
+        ]);
     }
 }

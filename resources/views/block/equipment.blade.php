@@ -141,7 +141,10 @@
   {{-- List of Equipments --}}
   <div class="d-flex justify-content-between align-items-center">
     <h6 class="mb-0 text-uppercase">List of Equipments</h6>
-    <button type="button" class="btn btn-sm btn-primary addEquipment" data-bs-toggle="modal" data-bs-target="#modalEquipment">Add new equipment</button>
+    <div>
+      <a href="/report-usage/{{ $block->id }}" class="btn btn-sm btn-success">Get Report</a>
+      <button type="button" class="btn btn-sm btn-primary addEquipment" data-bs-toggle="modal" data-bs-target="#modalEquipment">Add new equipment</button>
+    </div>
   </div>
   <hr>
   <div class="card">
@@ -189,11 +192,7 @@
                 @if (!$item->stopped_at)
                 <a href="/my-block/{{ $block->id }}/{{ $item->id }}/finished" class="btn btn-sm text-success confirmAlert" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Finishing Progress"><i class="bi bi-check2-circle"></i></a>
                 @else
-                  @if ($item->type == 'Gas')
-                  <a href="/report-usage/gas" class="btn btn-sm text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Get usage report"><i class="bi bi-clipboard-data"></i></a>
-                  @else
-                  <a href="/report-usage/electric" class="btn btn-sm text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Get usage report"><i class="bi bi-clipboard-data"></i></a>
-                  @endif
+                <a href="/report-usage/{{ $block->id }}" class="btn btn-sm text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Get usage report"><i class="bi bi-clipboard-data"></i></a>
                 @endif
                 <button type="button" class="btn p-0 text-warning editEquipment" data-bs-toggle="modal" data-bs-target="#modalEquipment" data-equipment-id="{{ $item->id }}">
                   <i class="bi bi-pencil-fill"></i>
