@@ -18,7 +18,7 @@ class ProjectFactory extends Factory
     {
         static $id = 1;
         return [
-            'user_id'           => mt_rand(5, 9),
+            'user_id'           => mt_rand(4, 6),
             'code'              => 'Code' . $id++,
             'ship_name'         => 'Kapal ' . fake()->colorName(),
             'ship_owner'        => fake()->name(),

@@ -19,8 +19,8 @@ class BlockFactory extends Factory
     {
         $blockName = 'Block ' . Str::upper(fake()->randomLetter);
         return [
-            'user_id'       => mt_rand(10, 16),
-            'project_id'    => mt_rand(1, 20),
+            'user_id'       => mt_rand(7, 10),
+            'project_id'    => mt_rand(1, 10),
             'block_name'    => $blockName,
             'block_weight'  => mt_rand(100, 500),
             'sequence'      => fake()->word(),

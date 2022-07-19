@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             'password'      => Hash::make('admin'),
             'roles'         => 'GM',
         ]);
-        \App\Models\User::factory(2)->create([
+        \App\Models\User::factory(1)->create([
             'roles' => 'GM'
         ]);
 
@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             'password'      => Hash::make('admin'),
             'roles'         => 'PM',
         ]);
-        \App\Models\User::factory(4)->create([
+        \App\Models\User::factory(2)->create([
             'roles' => 'PM'
         ]);
 
@@ -53,16 +53,16 @@ class DatabaseSeeder extends Seeder
             'password'      => Hash::make('admin'),
             'roles'         => 'PIC',
         ]);
-        \App\Models\User::factory(6)->create([
+        \App\Models\User::factory(3)->create([
             'roles' => 'PIC'
         ]);
 
-        \App\Models\Project::factory(20)->create();
+        \App\Models\Project::factory(10)->create();
 
-        \App\Models\Block::factory(100)->create();
+        \App\Models\Block::factory(50)->create();
 
-        \App\Models\EquipmentGas::factory(25)->create();
+        // \App\Models\EquipmentGas::factory(25)->create();
 
-        \App\Models\EquipmentElectric::factory(25)->create();
+        // \App\Models\EquipmentElectric::factory(25)->create();
     }
 }
