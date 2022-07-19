@@ -27,4 +27,9 @@ class Project extends Model
     {
         return $this->hasMany(Block::class);
     }
+
+    public function project_plan()
+    {
+        return $this->hasMany(ProjectPlan::class);
+    }
 }

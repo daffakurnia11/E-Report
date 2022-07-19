@@ -286,4 +286,31 @@ if (flashdata) {
       confirmButtonColor: '#3461ff'
     })
   }
+  // Planning created
+  if (flashdata == 'Planning created') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "New planning created for the project!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Planning updated
+  if (flashdata == 'Planning updated') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "Planning has been updated for the project!",
+      confirmButtonColor: '#3461ff'
+    })
+  }
+  // Planning deleted
+  if (flashdata == 'Planning deleted') {
+    Swal.fire({
+      icon: 'success',
+      title: flashdata,
+      text: "Planning has been deleted",
+      confirmButtonColor: '#3461ff'
+    })
+  }
 }

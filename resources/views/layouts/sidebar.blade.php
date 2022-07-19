@@ -40,6 +40,13 @@
         <div class="menu-title">Project Management</div>
       </a>
     </li>
+    <li class="{{ Request::is('/planning') ?? 'mm-active' }}">
+      <a href="/planning">
+        <div class="parent-icon"><i class="bi bi-calendar-week"></i>
+        </div>
+        <div class="menu-title">Project Planning</div>
+      </a>
+    </li>
     @endcan
 
     @can('pm')
