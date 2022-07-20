@@ -58,10 +58,12 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Project::factory(10)->create();
 
-        \App\Models\Block::factory(50)->create();
+        \App\Models\Block::factory(30)->create();
 
         $data_path = 'app/Data/ereport.sql';
         DB::unprepared(file_get_contents($data_path));
+
+        \App\Models\Equipment::factory(50)->create();
 
         // \App\Models\EquipmentGas::factory(25)->create();
 
