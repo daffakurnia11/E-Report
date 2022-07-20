@@ -10,7 +10,7 @@ class Block extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'project_id', 'block_name', 'block_weight', 'sequence', 'filename', 'build_start', 'build_ended', 'status'
+        'user_id', 'project_id', 'block_name', 'block_weight', 'filename', 'build_start', 'build_ended', 'status'
     ];
 
     public function user()

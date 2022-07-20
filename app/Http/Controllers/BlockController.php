@@ -38,7 +38,6 @@ class BlockController extends Controller
         $validator = Validator::make($request->all(), [
             'block_name'        => 'required',
             'block_weight'      => 'required|numeric',
-            'sequence'          => 'required',
             'user_id'           => 'required',
             'build_start'       => 'required',
             'build_ended'       => 'required',
@@ -90,7 +89,6 @@ class BlockController extends Controller
         $validator = Validator::make($request->all(), [
             'block_name'        => 'required',
             'block_weight'      => 'required|numeric',
-            'sequence'          => 'required',
             'user_id'           => 'nullable',
             'build_start'       => 'required',
             'build_ended'       => 'required',

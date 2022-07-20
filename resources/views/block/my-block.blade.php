@@ -52,7 +52,6 @@
               <th>Project Manager</th>
               <th>Block name</th>
               <th>Block weight (in Ton)</th>
-              <th>Sequence</th>
               <th>Block File</th>
               <th>Status</th>
               <th>Action</th>
@@ -67,7 +66,6 @@
               <td class="align-middle">{{ $block->project->user->name }}</td>
               <td class="align-middle">{{ $block->block_name }}</td>
               <td class="text-center align-middle">{{ $block->block_weight }}</td>
-              <td class="align-middle">{{ $block->sequence }}</td>
               <td class="text-center align-middle">
                 @if ($block->filename)
                 <a href="/files/block/{{ $block->filename }}" target="_blank">Open file</a>
@@ -98,7 +96,6 @@
               <th>Project Manager</th>
               <th>Block name</th>
               <th>Block weight (in Ton)</th>
-              <th>Sequence</th>
               <th>Block File</th>
               <th>Status</th>
               <th>Action</th>

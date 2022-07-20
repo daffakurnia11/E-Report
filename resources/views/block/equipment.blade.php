@@ -63,12 +63,6 @@
             </div>
           </div>
           <div class="row mb-2">
-            <label class="col-sm-5 d-block fw-bold">Sequence</label>
-            <div class="col-sm-7">
-              {{ $block->sequence }}
-            </div>
-          </div>
-          <div class="row mb-2">
             <label class="col-sm-5 d-block fw-bold">Block File</label>
             <div class="col-sm-7">
               @if ($block->filename)

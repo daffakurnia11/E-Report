@@ -55,7 +55,6 @@
               <th>No</th>
               <th>Block name</th>
               <th>Block weight (in Ton)</th>
-              <th>Sequence</th>
               <th>PIC</th>
               <th>Block File</th>
               <th>Status</th>
@@ -68,7 +67,6 @@
               <td class="text-center align-middle">{{ $loop->iteration }}</td>
               <td class="align-middle">{{ $block->block_name }}</td>
               <td class="text-center align-middle">{{ $block->block_weight }}</td>
-              <td class="align-middle">{{ $block->sequence }}</td>
               <td class="align-middle">
                 <span class="badge bg-success">{{ $block->user->name }}</span>
               </td>
@@ -100,7 +98,6 @@
               <th>No</th>
               <th>Block name</th>
               <th>Block weight (in Ton)</th>
-              <th>Sequence</th>
               <th>PIC</th>
               <th>Block File</th>
               <th>Status</th>
@@ -137,10 +134,6 @@
                 <input required type="number" class="form-control" name="block_weight" id="block_weight" value="{{ old('block_weight') }}">
                 <span class="input-group-text" id="basic-addon2">Ton</span>
               </div>
-            </div>
-            <div class="col-sm-6 mb-3">
-              <label for="sequence" class="form-label">Erection Sequence*</label>
-              <input required type="text" class="form-control" name="sequence" id="sequence" value="{{ old('sequence') }}">
             </div>
             <div class="col-sm-6 mb-3">
               <label for="user_id" class="form-label">Project Manager*</label>
@@ -190,7 +183,6 @@
       $('.formModal').attr('action', baseUrl)
       $('input[name=block_name]').val('')
       $('input[name=block_weight]').val('')
-      $('input[name=sequence]').val('')
       $('input[name=build_start]').val('')
       $('input[name=build_ended]').val('')
       $('#currentFile').css('display', 'none');
@@ -208,7 +200,6 @@
           $('.formModal').attr('action', baseUrl + '/' + data.block.id)
           $('input[name=block_name]').val(data.block.block_name)
           $('input[name=block_weight]').val(data.block.block_weight)
-          $('input[name=sequence]').val(data.block.sequence)
           $('input[name=build_start]').val(data.block.build_start)
           $('input[name=build_ended]').val(data.block.build_ended)
           $('.formSubmit').text('Edit block')

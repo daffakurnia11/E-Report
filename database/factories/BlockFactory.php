@@ -38,7 +38,6 @@ class BlockFactory extends Factory
             'project_id'    => $project_id++,
             'block_name'    => $blockName,
             'block_weight'  => mt_rand(100, 500),
-            'sequence'      => fake()->word(),
             'filename'      => null,
             'build_start'   => fake()->date(),
             'build_ended'   => fake()->date(),

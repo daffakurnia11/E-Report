@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignId('project_id');
             $table->string('block_name');
             $table->string('block_weight');
-            $table->string('sequence');
             $table->string('filename')->nullable();
             $table->date('build_start')->nullable();
             $table->date('build_ended')->nullable();
