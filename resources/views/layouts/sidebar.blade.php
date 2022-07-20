@@ -40,12 +40,29 @@
         <div class="menu-title">Project Management</div>
       </a>
     </li>
-    <li class="{{ Request::is('/planning') ?? 'mm-active' }}">
-      <a href="/planning">
+    <li class="{{ Request::is('/planning**') ?? 'mm-active' }}">
+      <a class="has-arrow" href="javascript:;" aria-expanded="true">
         <div class="parent-icon"><i class="bi bi-calendar-week"></i>
         </div>
         <div class="menu-title">Project Planning</div>
       </a>
+      <ul class="mm-collapse {{ Request::is('/planning**') ?? 'mm-show' }}" style="">
+        {{-- <li class="{{ Request::is('/planning/gas') ?? 'mm-active' }}"> 
+          <a href="/planning/gas">
+            <i class="bi bi-arrow-right-short"></i> Gas
+          </a>
+        </li> --}}
+        <li class="{{ Request::is('/planning/electric') ?? 'mm-active' }}"> 
+          <a href="/planning/electric">
+            <i class="bi bi-arrow-right-short"></i> Electric
+          </a>
+        </li>
+        {{-- <li class="{{ Request::is('/equipment/renewable') ?? 'mm-active' }}"> 
+          <a href="/equipment/renewable">
+            <i class="bi bi-arrow-right-short"></i> Renewable
+          </a>
+        </li> --}}
+      </ul>
     </li>
     @endcan
 

@@ -69,6 +69,7 @@
   <script src="/plugins/sweetalert2/dist/sweetalert2.all.js"></script>
   <script src="/plugins/bootstrap-material-datetimepicker/js/moment.min.js"></script>
 	<script src="/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js"></script>
+  <script src="/plugins/chart.js/dist/chart.js"></script>
   <!--app-->
   <script src="/js/app.js"></script>
   <script src="/js/notification.js"></script>

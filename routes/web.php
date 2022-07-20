@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Equipment\ElectricController;
 use App\Http\Controllers\Equipment\GasController;
 use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\Planning\ElectricPlanController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectPlanController;
 use App\Http\Controllers\ReportController;
@@ -52,11 +53,12 @@ Route::middleware('auth')->group(function () {
         Route::post('project/{project}/add-pm', [ProjectController::class, 'add_pm']);
         Route::resource('project', ProjectController::class)->except(['create', 'edit', 'update']);
         // Project Planning
-        Route::post('/planning/{project}', [ProjectPlanController::class, 'store']);
-        Route::get('/planning/{project}/{projectPlan}', [ProjectPlanController::class, 'edit']);
-        Route::post('/planning/{project}/{projectPlan}', [ProjectPlanController::class, 'update']);
-        Route::delete('/planning/{project}/{projectPlan}', [ProjectPlanController::class, 'destroy']);
-        Route::resource('planning', ProjectPlanController::class)->parameters(['planning' => 'project'])->except(['create', 'store', 'edit', 'update', 'destroy']);
+        Route::prefix('planning')->group(function () {
+            Route::get('/electric', [ElectricPlanController::class, 'index']);
+            Route::post('electric/create/{project}', [ElectricPlanController::class, 'create']);
+            Route::get('/electric/{project}', [ElectricPlanController::class, 'show']);
+            Route::post('/electric/{project}/{projectPlan}', [ElectricPlanController::class, 'update']);
+        });
     });
     // Project Manager
     Route::middleware('pm')->group(function () {

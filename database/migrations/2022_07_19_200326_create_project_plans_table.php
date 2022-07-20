@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('project_id');
             $table->string('project_code');
-            $table->string('plan_type')->nullable();
-            $table->string('month');
+            $table->string('plan_type');
+            $table->string('period_interval')->nullable();
+            $table->string('total_kWh')->nullable();
             $table->string('electric_plan')->nullable();
             $table->string('gas_plan')->nullable();
             $table->timestamps();

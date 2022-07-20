@@ -10,7 +10,7 @@ class ProjectPlan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'project_id', 'project_code', 'plan_type', 'month', 'electric_plan', 'gas_plan'
+        'project_id', 'project_code', 'plan_type', 'period_interval', 'total_kWh', 'electric_plan', 'gas_plan'
     ];
 
     public function project()

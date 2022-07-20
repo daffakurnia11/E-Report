@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\ProjectPlan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,12 +15,7 @@ class ProjectPlanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('project.plan_index', [
-            'projects'      => Project::all(),
-        ]);
-    }
+
 
     /**
      * Store a newly created resource in storage.

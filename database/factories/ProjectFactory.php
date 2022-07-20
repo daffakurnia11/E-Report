@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,8 +24,8 @@ class ProjectFactory extends Factory
             'ship_name'         => 'Kapal ' . fake()->colorName(),
             'ship_owner'        => fake()->name(),
             'ship_size'         => 'Tongkang',
-            'contract_start'    => fake()->date(),
-            'contract_ended'    => fake()->date(),
+            'contract_start'    => Carbon::now(),
+            'contract_ended'    => fake()->dateTimeInInterval(Carbon::now(), '+2 years'),
             'status'            => 'Preparation'
         ];
     }
