@@ -19,13 +19,13 @@ class ProjectFactory extends Factory
     {
         static $id = 1;
         return [
-            'user_id'           => mt_rand(4, 6),
+            // 'user_id'           => mt_rand(4, 6),
             'code'              => 'Code' . $id++,
             'ship_name'         => 'Kapal ' . fake()->colorName(),
             'ship_owner'        => fake()->name(),
             'ship_size'         => 'Tongkang',
             'contract_start'    => Carbon::now(),
-            'contract_ended'    => fake()->dateTimeInInterval(Carbon::now(), '+2 years'),
+            'contract_ended'    => fake()->dateTimeInInterval(Carbon::now(), '-2 years'),
             'status'            => 'Preparation'
         ];
     }

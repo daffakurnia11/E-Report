@@ -46,6 +46,7 @@
       {{-- Project Data --}}
       <div class="d-flex justify-content-between align-items-center">
         <h6 class="mb-0 text-uppercase">Project Data</h6>
+        <a href="" class="btn btn-sm btn-primary">Get Report</a>
       </div>
       <hr>
       <div class="card">
@@ -83,6 +84,25 @@
         </div>
       </div>
     </div>
+    <div class="col-lg-6">
+      {{-- Block Data --}}
+      <div class="d-flex justify-content-between align-items-center">
+        <h6 class="mb-0 text-uppercase">Block Data</h6>
+      </div>
+      <hr>
+      <div class="card">
+        <div class="card-body">
+          @foreach ($blocks as $block)    
+          <div class="row mb-2">
+            <label class="col-sm-5 d-block fw-bold">PIC {{ $block->block_name }}</label>
+            <div class="col-sm-7">
+              <span class="badge bg-success text-dark">{{ $block->user->name }}</span>
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
   </div>
 
   {{-- List of Equipments --}}
@@ -99,9 +119,9 @@
       <hr>
       <div class="card">
         <div class="card-body">
-          @if ($block->status !== 'Waiting for approval')
+          @if ($block->equipment_process->isNotEmpty())
           <div class="table-responsive">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <table class="datatable table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr>
                   <th>No</th>
@@ -119,7 +139,7 @@
                 <tr>
                   <td class="text-center align-middle">{{ $loop->iteration }}</td>
                   <td class="align-middle">{{ $item->block->block_name }}</td>
-                  <td class="text-center align-middle">{{ $item->created_at }}</td>
+                  <td class="text-center align-middle">{{ $item->equipment->stopped_at }}</td>
                   <td class="align-middle">{{ $item->equipment->equipment_gas->gas_filter }}</td>
                   <td class="align-middle">{{ $item->equipment->activity }}</td>
                   <td class="text-center align-middle">{{ $item->equipment->flowmeter }} LPM</td>
@@ -154,9 +174,9 @@
       <hr>
       <div class="card">
         <div class="card-body">
-          @if ($block->status !== 'Waiting for approval')
+          @if ($block->equipment_process->isNotEmpty())
           <div class="table-responsive">
-            <table id="example2" class="table table-striped table-bordered" style="width:100%">
+            <table class="datatable table table-striped table-bordered" style="width:100%">
               <thead>
                 <tr>
                   <th>No</th>
@@ -176,8 +196,7 @@
                 <tr>
                   <td class="text-center align-middle">{{ $loop->iteration }}</td>
                   <td class="align-middle">{{ $item->block->block_name }}</td>
-                  <td class="text-center align-middle">{{ $item->created_at }}</td>
-                  {{-- <td class="align-middle">{{ $item->equipment->equipment_electric->name }}</td> --}}
+                  <td class="text-center align-middle">{{ $item->equipment->stopped_at }}</td>
                   <td class="align-middle">{{ $item->equipment->equipment_electric->name }}</td>
                   <td class="align-middle">{{ $item->equipment->activity }}</td>
                   <td class="text-center align-middle">{{ $item->equipment->volt }} Volt</td>

@@ -24,7 +24,7 @@ class EquipmentController extends Controller
             'block'         => $block,
             'gases'         => EquipmentGas::all(),
             'electrics'     => EquipmentElectric::all(),
-            'equipments'    => Equipment::where('block_id', $block->id)->get()
+            'equipments'    => Equipment::where('block_id', $block->id)->orderBy('created_at')->get()
         ]);
     }
     /**

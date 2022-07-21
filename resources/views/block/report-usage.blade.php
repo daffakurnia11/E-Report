@@ -58,7 +58,6 @@
           <thead>
             <tr>
               <th>No</th>
-              <th>Block</th>
               <th>Date</th>
               <th>Gas Filter</th>
               <th>Activity</th>
@@ -70,8 +69,7 @@
             @foreach ($gases as $item)
             <tr>
               <td class="text-center align-middle">{{ $loop->iteration }}</td>
-              <td class="align-middle">{{ $item->block->block_name }}</td>
-              <td class="text-center align-middle">{{ $item->created_at }}</td>
+              <td class="text-center align-middle">{{ $item->equipment->stopped_at }}</td>
               <td class="align-middle">{{ $item->equipment->equipment_gas->gas_filter }}</td>
               <td class="align-middle">{{ $item->equipment->activity }}</td>
               <td class="text-center align-middle">{{ $item->equipment->flowmeter }} LPM</td>
@@ -82,7 +80,6 @@
           <tfoot>
             <tr>
               <th>No</th>
-              <th>Block</th>
               <th>Date</th>
               <th>Gas Filter</th>
               <th>Activity</th>
@@ -107,7 +104,6 @@
           <thead>
             <tr>
               <th>No</th>
-              <th>Block</th>
               <th>Date</th>
               <th>Equipment</th>
               <th>Activity</th>
@@ -121,8 +117,7 @@
             @foreach ($electrics as $item)
             <tr>
               <td class="text-center align-middle">{{ $loop->iteration }}</td>
-              <td class="align-middle">{{ $item->block->block_name }}</td>
-              <td class="text-center align-middle">{{ $item->created_at }}</td>
+              <td class="text-center align-middle">{{ $item->equipment->stopped_at }}</td>
               <td class="align-middle">{{ $item->equipment->equipment_electric->name }}</td>
               <td class="align-middle">{{ $item->equipment->activity }}</td>
               <td class="text-center align-middle">{{ $item->equipment->volt }} Volt</td>
@@ -135,7 +130,6 @@
           <tfoot>
             <tr>
               <th>No</th>
-              <th>Block</th>
               <th>Date</th>
               <th>Equipment</th>
               <th>Activity</th>

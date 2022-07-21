@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -18,29 +19,16 @@ class BlockFactory extends Factory
     public function definition()
     {
         $blockName = 'Block ' . Str::upper(fake()->randomLetter);
-
-        static $user_id = 7;
-        static $project_id = 1;
-
-        if ($project_id == 11) {
-            $project_id = 1;
-            $user_id++;
-        }
-
-        if ($user_id == 7) {
-            $status = 'Preparation';
-        } else {
-            $status = 'Waiting for approval';
-        }
+        $status = 'Preparation';
 
         return [
-            'user_id'       => $user_id,
-            'project_id'    => $project_id++,
+            // 'user_id'       => mt_rand(7, 10),
+            'project_id'    => mt_rand(1, 9),
             'block_name'    => $blockName,
             'block_weight'  => mt_rand(100, 500),
             'filename'      => null,
-            'build_start'   => fake()->date(),
-            'build_ended'   => fake()->date(),
+            'build_start'   => fake()->dateTimeInInterval(Carbon::now(), '-1 year'),
+            'build_ended'   => fake()->dateTimeInInterval(Carbon::now(), '-1 year'),
             'status'        => $status
         ];
     }

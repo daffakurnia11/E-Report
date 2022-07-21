@@ -43,7 +43,8 @@ class EquipmentFactory extends Factory
         }
 
         $block_id = mt_rand(1, 10);
-        $stopped_at = fake()->dateTimeInInterval(Carbon::now(), '+1 year');
+        $created_at = fake()->dateTimeInInterval(Carbon::now(), '-1 year');
+        $stopped_at = fake()->dateTimeInInterval($created_at, '+12 hours');
 
         $equipment = [
             'user_id'               => 7,
@@ -56,6 +57,7 @@ class EquipmentFactory extends Factory
             'ampere'                => $ampere,
             'activity'              => fake()->word(),
             'status'                => 'Preparation',
+            'created_at'            => $created_at,
             'stopped_at'            => $stopped_at
         ];
 
