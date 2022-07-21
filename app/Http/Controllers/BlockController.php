@@ -177,4 +177,12 @@ class BlockController extends Controller
             return back()->with('message', 'Block update success');
         }
     }
+
+    public function report(Project $project)
+    {
+        return view('project.report-block', [
+            'project'   => $project,
+            'blocks'    => Block::where('project_id', $project->id)->get()
+        ]);
+    }
 }

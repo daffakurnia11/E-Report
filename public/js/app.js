@@ -123,6 +123,11 @@ $(function () {
 		});
 		table.buttons().container()
 			.appendTo('#example2_wrapper .col-md-6:eq(0)');
+		var table = $('.datatable').DataTable({
+			buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']
+		});
+		table.buttons().container()
+			.appendTo('.datatable_wrapper .col-md-6:eq(0)');
 	});
 
 	$('.datePicker').bootstrapMaterialDatePicker({

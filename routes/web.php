@@ -64,11 +64,14 @@ Route::middleware('auth')->group(function () {
     Route::middleware('pm')->group(function () {
         Route::get('my-project', [ProjectController::class, 'pm_project']);
         Route::prefix('my-project/{project}')->controller(BlockController::class)->group(function () {
+            // Block Managements
             Route::get('/blocks', 'index');
             Route::post('/blocks', 'store');
             Route::get('/blocks/{block}', 'show');
             Route::post('/blocks/{block}', 'update');
             Route::delete('/block/{block}', 'destroy');
+            // Reports
+            Route::get('/report', 'report');
         });
     });
     // Person In Charge

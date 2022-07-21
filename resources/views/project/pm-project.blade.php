@@ -59,7 +59,9 @@
             @foreach ($projects as $project)
             <tr>
               <td class="text-center align-middle">{{ $loop->iteration }}</td>
-              <td class="align-middle">{{ $project->code }}</td>
+              <td class="align-middle">
+                <span class="badge bg-success text-dark">{{ $project->code }}</span>
+              </td>
               <td class="align-middle">{{ $project->ship_name }}</td>
               <td class="align-middle">{{ $project->ship_owner }}</td>
               <td class="align-middle">{{ $project->ship_size }}</td>
@@ -76,6 +78,7 @@
                 <a href="/my-project/{{ $project->code }}/blocks" class="btn p-0 text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Create Block Division">
                   <i class="bi bi-boxes"></i>
                 </a>
+                <a href="/my-project/{{ $project->code }}/report" class="btn btn-sm text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Get usage report"><i class="bi bi-clipboard-data"></i></a>
               </td>
             </tr>
             @endforeach
