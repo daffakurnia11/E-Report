@@ -46,7 +46,6 @@
       {{-- Project Data --}}
       <div class="d-flex justify-content-between align-items-center">
         <h6 class="mb-0 text-uppercase">Project Data</h6>
-        <a href="" class="btn btn-sm btn-primary">Get Report</a>
       </div>
       <hr>
       <div class="card">
@@ -81,6 +80,18 @@
               {{ $project->user->name }}
             </div>
           </div>
+          <div class="row mb-2">
+            <label class="col-sm-5 d-block fw-bold">Contract Start</label>
+            <div class="col-sm-7">
+              {{ $project->contract_start }}
+            </div>
+          </div>
+          <div class="row mb-2">
+            <label class="col-sm-5 d-block fw-bold">Contract End</label>
+            <div class="col-sm-7">
+              {{ $project->contract_ended }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -100,6 +111,26 @@
             </div>
           </div>
           @endforeach
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{-- Chart Usage --}}
+  <h6 class="mb-0 text-uppercase">Usage Report Chart</h6>
+  <hr/>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="chart-container1">
+            <canvas id="electricChart" height="600"></canvas>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="chart-container1">
+            <canvas id="gasChart" height="600"></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -139,7 +170,7 @@
                 <tr>
                   <td class="text-center align-middle">{{ $loop->iteration }}</td>
                   <td class="align-middle">{{ $item->block->block_name }}</td>
-                  <td class="text-center align-middle">{{ $item->equipment->stopped_at }}</td>
+                  <td class="text-center align-middle">{{ $item->created_at }}</td>
                   <td class="align-middle">{{ $item->equipment->equipment_gas->gas_filter }}</td>
                   <td class="align-middle">{{ $item->equipment->activity }}</td>
                   <td class="text-center align-middle">{{ $item->equipment->flowmeter }} LPM</td>
@@ -196,7 +227,7 @@
                 <tr>
                   <td class="text-center align-middle">{{ $loop->iteration }}</td>
                   <td class="align-middle">{{ $item->block->block_name }}</td>
-                  <td class="text-center align-middle">{{ $item->equipment->stopped_at }}</td>
+                  <td class="text-center align-middle">{{ $item->created_at }}</td>
                   <td class="align-middle">{{ $item->equipment->equipment_electric->name }}</td>
                   <td class="align-middle">{{ $item->equipment->activity }}</td>
                   <td class="text-center align-middle">{{ $item->equipment->volt }} Volt</td>
@@ -234,4 +265,60 @@
 </main>
 <!--end page main-->
 
+@endsection
+
+@section('custom-js')
+  <script>
+    const url = window.location.href;
+    $.ajax({
+      type: "GET",
+      url: url + '/monthly-usage-data',
+      dataType: 'JSON',
+      success: function (data) {
+        console.log(data);
+        const electric = document.getElementById('electricChart').getContext('2d');
+        const electricChart = new Chart(electric, {
+            type: 'line',
+            data: {
+                labels: data.monthlist,
+                datasets: [{
+                    label: 'Electric Usage',
+                    data: data.data.kWh,
+                    borderColor: '#3461ff',
+                    lineTension: 0.25
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                maintainAspectRatio: false
+            }
+        });
+        const gas = document.getElementById('gasChart').getContext('2d');
+        const gasChart = new Chart(gas, {
+            type: 'line',
+            data: {
+                labels: data.monthlist,
+                datasets: [{
+                    label: 'Gas Usage',
+                    data: data.data.gas_usage,
+                    borderColor: '#198754',
+                    lineTension: 0.25
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                maintainAspectRatio: false
+            }
+        });
+      }
+    });
+  </script>
 @endsection

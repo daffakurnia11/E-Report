@@ -24,8 +24,8 @@ class ProjectFactory extends Factory
             'ship_name'         => 'Kapal ' . fake()->colorName(),
             'ship_owner'        => fake()->name(),
             'ship_size'         => 'Tongkang',
-            'contract_start'    => Carbon::now(),
-            'contract_ended'    => fake()->dateTimeInInterval(Carbon::now(), '-2 years'),
+            'contract_start'    => fake()->dateTimeInInterval(Carbon::now(), '-2 years'),
+            'contract_ended'    => Carbon::now(),
             'status'            => 'Preparation'
         ];
     }

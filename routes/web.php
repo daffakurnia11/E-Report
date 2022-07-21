@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/block/{block}', 'destroy');
             // Reports
             Route::get('/report', 'report');
+            Route::get('/report/monthly-usage-data', 'monthly_usage');
         });
     });
     // Person In Charge

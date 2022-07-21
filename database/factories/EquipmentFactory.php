@@ -91,6 +91,7 @@ class EquipmentFactory extends Factory
             'gas_usage'     => $gas_usage,
             'period'        => $period,
             'kWh'           => $kWh,
+            'created_at'    => $stopped_at
         ]);
 
         return $equipment;
