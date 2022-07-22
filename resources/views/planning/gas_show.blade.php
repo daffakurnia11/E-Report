@@ -28,8 +28,8 @@
             </a>
           </li>
           <li class="breadcrumb-item">
-            <a href="/planning/electric">
-              <i class="bi bi-calendar-week"></i> Electric Planning
+            <a href="/planning/gas/{{ $equipment->id }}">
+              <i class="bi bi-calendar-week"></i> {{ $equipment->name }} Planning
             </a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
@@ -44,7 +44,7 @@
   <div class="row">
     <div class="col-xl-9">
       <div class="d-flex justify-content-between align-items-center">
-        <h6 class="mb-0 text-uppercase">Electric Plan Details</h6>
+        <h6 class="mb-0 text-uppercase">Gas Plan Details</h6>
       </div>
       <hr>
       <div class="card">
@@ -54,17 +54,17 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Electric Plan</th>
+                  <th>Gas Plan</th>
                   <th>Period</th>
                   <th>Persentage</th>
-                  <th>kWh Plan</th>
+                  <th>Kg Plan</th>
                 </tr>
               </thead>
               <tbody>
                 @php
                   $data = [];
                 @endphp
-                @foreach ($electric_plans as $plan)
+                @foreach ($gas_plans as $plan)
                 @php
                   $total =  ($plan->persen_plan / 100) * $plan->total_plan;
                   $data[] = $total;
@@ -74,18 +74,18 @@
                   <td class="text-center align-middle">{{ $plan->total_plan }}</td>
                   <td class="text-center align-middle">{{ $plan->period_interval }}</td>
                   <td class="text-center align-middle">
-                    <form class="electric-plan-form" data-planning={{ $plan->id }}>
+                    <form class="gas-plan-form" data-planning={{ $plan->id }}>
                       @csrf
                       <div class="input-group input-group-sm">
-                        <input type="number" min="0" max="100" class="form-control" placeholder="Electric Persentage" name="persen_plan" value="{{ $plan->persen_plan }}">
-                        <button class="btn btn-primary electric-plan-submit" type="submit">Add</button>
+                        <input type="number" min="0" max="100" class="form-control" placeholder="Gas Persentage" name="persen_plan" value="{{ $plan->persen_plan }}">
+                        <button class="btn btn-primary gas-plan-submit" type="submit">Add</button>
                       </div>
                     </form>
                   </td>
                   @if ($plan->persen_plan)
-                  <td class="text-center align-middle kWh-plan{{ $plan->id }}">{{ $total }} kWh</td>
+                  <td class="text-center align-middle kg-plan{{ $plan->id }}">{{ $total }} kg</td>
                   @else
-                  <td class="text-center align-middle kWh-plan{{ $plan->id }}">0 kWh</td>
+                  <td class="text-center align-middle kg-plan{{ $plan->id }}">0 kg</td>
                   @endif
                 </tr>
                 @endforeach
@@ -93,10 +93,10 @@
               <tfoot>
                 <tr>
                   <th>No</th>
-                  <th>Electric Plan</th>
+                  <th>Gas Plan</th>
                   <th>Period</th>
                   <th>Persentage</th>
-                  <th>kWh Plan</th>
+                  <th>Kg Plan</th>
                 </tr>
               </tfoot>
             </table>
@@ -127,7 +127,7 @@
     const value = $('#planningChart').data('chart');
     const data = value.split(";");
     $(function () {
-      $('.electric-plan-form').submit(function (e) {
+      $('.gas-plan-form').submit(function (e) {
         e.preventDefault();
         const val = $(this).find('input[name=persen_plan]').val();
         const _token = $(this).find('input[name=_token]').val();
@@ -135,7 +135,7 @@
         const url = window.location.origin;
         $.ajax({
           type: "POST",
-          url: url + '/planning/electric/' + project,
+          url: url + '/planning/gas/' + project,
           data: {
             persen_plan: val,
             _token: _token
@@ -159,8 +159,8 @@
               })
             } else {
               $(this).find('input[name=_token]').val(data.plan);
-              const kWh = data.plan.total_plan * (data.plan.persen_plan / 100);
-              $('.kWh-plan' + data.plan.id).text(kWh + ' kWh');
+              const kg = data.plan.total_plan * (data.plan.persen_plan / 100);
+              $('.kg-plan' + data.plan.id).text(kg + ' kg');
               Swal.fire({
                 icon: 'success',
                 title: data.message,
@@ -182,7 +182,7 @@
         data: {
             labels: ['0.2 T', '0.4 T', '0.6 T', '0.8 T', '1 T'],
             datasets: [{
-                label: 'Electric Usage Planning',
+                label: 'Gas Usage Planning',
                 data: data,
                 borderColor: '#3461ff',
                 lineTension: 0.25

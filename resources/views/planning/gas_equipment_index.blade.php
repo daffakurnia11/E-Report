@@ -30,6 +30,9 @@
           <li class="breadcrumb-item active" aria-current="page">
             <i class="bi bi-calendar-week"></i> Project Planning
           </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ $equipment->name }}
+          </li>
         </ol>
       </nav>
     </div>
@@ -38,6 +41,18 @@
 
   <div class="d-flex justify-content-between align-items-center">
     <h6 class="mb-0 text-uppercase">List of Projects</h6>
+    <div class="btn-group">
+      <button class="btn btn-primary" disabled>{{ $equipment->name }}</button>
+      <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" data-popper-placement="bottom-end" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-73px, 40px);">
+        @foreach ($equipments as $item)
+        <a class="dropdown-item" href="/planning/gas/{{ $item->id }}">{{ $item->name }}</a>
+        @endforeach
+        <div class="dropdown-divider"></div>	
+        <a class="dropdown-item" href="/planning/gas">All Gas Planning</a>
+      </div>
+    </div>
   </div>
   <hr>
   <div class="card">
@@ -52,7 +67,7 @@
               <th>Contract Start</th>
               <th>Contract End</th>
               <th>Period</th>
-              <th>Electric Plan</th>
+              <th>Gas Plan</th>
               <th>Planning Status</th>
             </tr>
           </thead>
@@ -66,7 +81,7 @@
               $total_plan = 0;
               $planned = 0;
               foreach ($project->project_plan as $plan) {
-                if ($plan->plan_type == 'Electric') {
+                if ($plan->plan_type == 'Gas' && $plan->gas_equipment_id == $equipment->id) {
                   $total_plan = $plan->total_plan;
                   if ($plan->persen_plan) {
                     $planned++;
@@ -84,21 +99,21 @@
               <td class="text-center align-middle">{{ $project->contract_ended }}</td>
               <td class="text-center align-middle">{{ $diff }} Months</td>
               <td class="text-center align-middle">
-                <form action="" class="electric-plan-form" data-project={{ $project->code }}>
+                <form action="" class="gas-plan-form" data-project={{ $project->code }}>
                   @csrf
                   <div class="input-group input-group-sm">
-                    <input type="number" min="0" class="form-control" placeholder="Total kWh" name="total_plan" value="{{ $total_plan }}">
-                    <button class="btn btn-primary electric-plan-submit" type="submit">Add</button>
+                    <input type="number" min="0" class="form-control" placeholder="Total Kg" name="total_plan" value="{{ $total_plan }}">
+                    <button class="btn btn-primary gas-plan-submit" type="submit">Add</button>
                   </div>
                 </form>
               </td>
               @if ($planned == 5)
               <td class="text-center align-middle">
-                <a href="/planning/electric/{{ $project->code }}" class="badge text-dark bg-success">Planned - See planning</a>
+                <a href="/planning/gas/{{ $equipment->id }}/{{ $project->code }}" class="badge text-dark bg-success">Planned - See planning</a>
               </td>
               @else
               <td class="text-center align-middle">
-                <a href="/planning/electric/{{ $project->code }}" class="badge text-light bg-danger">Unplanned - Create planning</a>
+                <a href="/planning/gas/{{ $equipment->id }}/{{ $project->code }}" class="badge text-light bg-danger">Unplanned - Create planning</a>
               </td>
               @endif
             </tr>
@@ -112,7 +127,7 @@
               <th>Contract Start</th>
               <th>Contract End</th>
               <th>Period</th>
-              <th>Electric Plan</th>
+              <th>Gas Plan</th>
               <th>Planning Status</th>
             </tr>
           </tfoot>
@@ -129,7 +144,7 @@
 @section('custom-js')
   <script>
     $(function () {
-      $('.electric-plan-form').submit(function (e) {
+      $('.gas-plan-form').submit(function (e) {
         e.preventDefault();
         const val = $(this).find('input[name=total_plan]').val();
         const _token = $(this).find('input[name=_token]').val();

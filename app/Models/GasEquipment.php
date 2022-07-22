@@ -15,4 +15,9 @@ class GasEquipment extends Model
     {
         return $this->hasMany(EquipmentGas::class);
     }
+
+    public function project_plan()
+    {
+        return $this->hasMany(ProjectPlan::class);
+    }
 }

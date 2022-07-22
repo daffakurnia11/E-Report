@@ -10,11 +10,16 @@ class ProjectPlan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'project_id', 'project_code', 'plan_type', 'period_interval', 'total_kWh', 'electric_plan', 'gas_plan'
+        'project_id', 'project_code', 'plan_type', 'gas_equipment_id', 'period_interval', 'total_plan', 'persen_plan',
     ];
 
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function gas_equipment()
+    {
+        return $this->belongsTo(GasEquipment::class);
     }
 }

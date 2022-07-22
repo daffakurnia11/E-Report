@@ -3,21 +3,31 @@
 namespace App\Http\Controllers\Planning;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\GasEquipment;
 use App\Models\Project;
 use App\Models\ProjectPlan;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ElectricPlanController extends Controller
+class GasPlanController extends Controller
 {
     public function index()
     {
-        return view('planning.electric_index', [
+        return view('planning.gas_index', [
             'projects'      => Project::all(),
+            'equipments'    => GasEquipment::all()
         ]);
     }
 
-    public function create(Request $request, Project $project)
+    public function equipment_index(GasEquipment $gasEquipment)
+    {
+        return view('planning.gas_equipment_index', [
+            'projects'      => Project::all(),
+            'equipments'    => GasEquipment::all(),
+            'equipment'     => $gasEquipment
+        ]);
+    }
+    public function create(Request $request, GasEquipment $gasEquipment, Project $project)
     {
         $validator = Validator::make($request->all(), [
             'total_plan' => 'required|numeric'
@@ -28,7 +38,7 @@ class ElectricPlanController extends Controller
 
         $validated = $validator->validated();
 
-        $plans = ProjectPlan::where('project_id', $project->id)->where('plan_type', 'Electric')->get();
+        $plans = ProjectPlan::where('project_id', $project->id)->where('plan_type', 'Gas')->where('gas_equipment_id', $gasEquipment->id)->get();
         if ($plans) {
             foreach ($plans as $plan) {
                 $plan->delete();
@@ -39,7 +49,8 @@ class ElectricPlanController extends Controller
             ProjectPlan::create([
                 'project_id'        => $project->id,
                 'project_code'      => $project->code,
-                'plan_type'         => 'Electric',
+                'plan_type'         => 'Gas',
+                'gas_equipment_id'  => $gasEquipment->id,
                 'period_interval'   => $i,
                 'total_plan'        => $validated['total_plan'],
             ]);
@@ -48,11 +59,13 @@ class ElectricPlanController extends Controller
         return response()->json(['message' => 'Planning success', 'plan' => $validated['total_plan']]);
     }
 
-    public function show(Project $project)
+    public function show(GasEquipment $gasEquipment, Project $project)
     {
-        return view('planning.electric_show', [
-            'electric_plans'    => ProjectPlan::where('project_code', $project->code)->where('plan_type', 'Electric')->get(),
-            'project'           => $project
+        return view('planning.gas_show', [
+            'gas_plans'     => ProjectPlan::where('project_code', $project->code)->where('gas_equipment_id', $gasEquipment->id)->where('plan_type', 'Gas')->get(),
+            'equipments'    => GasEquipment::all(),
+            'equipment'     => $gasEquipment,
+            'project'       => $project
         ]);
     }
 

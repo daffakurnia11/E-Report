@@ -68,14 +68,14 @@
         <div class="menu-title">Project Planning</div>
       </a>
       <ul class="mm-collapse {{ Request::is('/planning**') ?? 'mm-show' }}" style="">
-        {{-- <li class="{{ Request::is('/planning/gas') ?? 'mm-active' }}"> 
-          <a href="/planning/gas">
-            <i class="bi bi-arrow-right-short"></i> Gas
-          </a>
-        </li> --}}
         <li class="{{ Request::is('/planning/electric') ?? 'mm-active' }}"> 
           <a href="/planning/electric">
             <i class="bi bi-arrow-right-short"></i> Electric
+          </a>
+        </li>
+        <li class="{{ Request::is('/planning/gas') ?? 'mm-active' }}"> 
+          <a href="/planning/gas">
+            <i class="bi bi-arrow-right-short"></i> Gas
           </a>
         </li>
       </ul>
