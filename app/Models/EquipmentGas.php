@@ -10,7 +10,7 @@ class EquipmentGas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'gas_filter', 'capacity', 'unit', 'quantity', 'density'
+        'user_id', 'gas_equipment_id', 'capacity', 'unit', 'quantity', 'density'
     ];
 
     public function user()
@@ -21,5 +21,10 @@ class EquipmentGas extends Model
     public function equipment()
     {
         return $this->hasMany(Equipment::class);
+    }
+
+    public function gas_equipment()
+    {
+        return $this->belongsTo(GasEquipment::class);
     }
 }

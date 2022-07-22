@@ -71,6 +71,8 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Equipment::factory(150)->create();
 
+        \App\Models\GasEquipment::factory(7)->create();
+
         // \App\Models\EquipmentGas::factory(25)->create();
 
         // \App\Models\EquipmentElectric::factory(25)->create();

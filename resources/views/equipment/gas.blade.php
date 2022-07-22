@@ -62,7 +62,7 @@
             @foreach ($items as $item)
             <tr>
               <td class="text-center align-middle">{{ $loop->iteration }}</td>
-              <td class="align-middle">{{ $item->gas_filter }}</td>
+              <td class="align-middle">{{ $item->gas_equipment->name }}</td>
               <td class="text-center align-middle">{{ $item->capacity }} {{ $item->unit }}</td>
               <td class="text-center align-middle">{{ $item->quantity }}</td>
               <td class="text-center align-middle">{{ $item->density }}</td>
@@ -111,7 +111,12 @@
           <div class="row">
             <div class="col-sm-6 mb-3">
               <label for="gas_filter" class="form-label">Gas Filter Name*</label>
-              <input required type="text" class="form-control" name="gas_filter" id="gas_filter" value="{{ old('gas_filter') }}">
+              <select class="form-select mb-3" id="gas_equipment" name="gas_equipment_id">
+                <option selected disabled>--Select the equipment--</option>
+                @foreach ($gases as $item)
+                <option value="{{ $item->id }}">Gas || {{ $item->name }}</option>
+                @endforeach
+              </select>
             </div>
             <div class="col-sm-6 mb-3">
               <label for="capacity" class="form-label">Capacity</label>
@@ -149,12 +154,14 @@
     $('.addEquipment').on('click', function () {
       $('.modal-title').text('Add new gas equipment')
       $('.formModal').attr('action', baseUrl + '/equipment/gas')
-      $('input[name=gas_filter]').val('')
       $('input[name=capacity]').val('')
       $('input[name=unit]').val('')
       $('input[name=quantity]').val('')
       $('input[name=density]').val('')
       $('.formSubmit').text('Add equipment')
+
+      $('option[selected]').removeAttr('selected')
+      $('option[disabled]').attr('selected', true)
     })
     $('.editEquipment').on('click', function () {
       const getId = $(this).data('equipment-id');
@@ -163,15 +170,16 @@
         url: baseUrl + '/equipment/gas/' + getId,
         dataType: 'JSON',
         success: function (data) {
-          console.log(data);
-          $('.modal-title').text('Edit equipment ' + data.equipment.gas_filter)
+          $('.modal-title').text('Edit equipment ' + data.equipment.gas_equipment)
           $('.formModal').attr('action', baseUrl + '/equipment/gas/' + data.equipment.id)
-          $('input[name=gas_filter]').val(data.equipment.gas_filter)
           $('input[name=capacity]').val(data.equipment.capacity)
           $('input[name=unit]').val(data.equipment.unit)
           $('input[name=quantity]').val(data.equipment.quantity)
           $('input[name=density]').val(data.equipment.density)
           $('.formSubmit').text('Edit equipment')
+      
+          $('option[selected]').removeAttr('selected')
+          $('option[value=' + data.equipment.gas_equipment_id + ']').attr('selected', true)
         }
       })
     });

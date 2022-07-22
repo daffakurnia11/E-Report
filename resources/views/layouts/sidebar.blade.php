@@ -40,6 +40,27 @@
         <div class="menu-title">Project Management</div>
       </a>
     </li>
+    <li class="{{ Request::is('/reports**') ?? 'mm-active' }}">
+      <a class="has-arrow" href="javascript:;" aria-expanded="true">
+        <div class="parent-icon"><i class="bi bi-graph-up-arrow"></i>
+        </div>
+        <div class="menu-title">Project Reports</div>
+      </a>
+      <ul class="mm-collapse {{ Request::is('/reports**') ?? 'mm-show' }}" style="">
+        {{-- <li class="{{ Request::is('/reports/gas') ?? 'mm-active' }}"> 
+          <a href="/reports/gas">
+            <i class="bi bi-arrow-right-short"></i> Gas
+          </a>
+        </li> --}}
+        <li class="{{ Request::is('/reports/electric') ?? 'mm-active' }}"> 
+          <a href="/reports/electric">
+            <i class="bi bi-arrow-right-short"></i> Electric
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="menu-label">Planning Management</li>
     <li class="{{ Request::is('/planning**') ?? 'mm-active' }}">
       <a class="has-arrow" href="javascript:;" aria-expanded="true">
         <div class="parent-icon"><i class="bi bi-calendar-week"></i>
@@ -59,24 +80,12 @@
         </li>
       </ul>
     </li>
-    <li class="{{ Request::is('/reports**') ?? 'mm-active' }}">
-      <a class="has-arrow" href="javascript:;" aria-expanded="true">
-        <div class="parent-icon"><i class="bi bi-graph-up-arrow"></i>
+    <li class="{{ Request::is('/gas-equipment') ?? 'mm-active' }}">
+      <a href="/gas-equipment">
+        <div class="parent-icon"><i class="bi bi-gear"></i>
         </div>
-        <div class="menu-title">Project Reports</div>
+        <div class="menu-title">Gas Equipment</div>
       </a>
-      <ul class="mm-collapse {{ Request::is('/reports**') ?? 'mm-show' }}" style="">
-        {{-- <li class="{{ Request::is('/reports/gas') ?? 'mm-active' }}"> 
-          <a href="/reports/gas">
-            <i class="bi bi-arrow-right-short"></i> Gas
-          </a>
-        </li> --}}
-        <li class="{{ Request::is('/reports/electric') ?? 'mm-active' }}"> 
-          <a href="/reports/electric">
-            <i class="bi bi-arrow-right-short"></i> Electric
-          </a>
-        </li>
-      </ul>
     </li>
     @endcan
 

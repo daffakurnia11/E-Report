@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('equipment_gases', function (Blueprint $table) {
+        Schema::create('gas_equipment', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('gas_equipment_id');
-            $table->string('capacity')->nullable();
-            $table->string('unit')->nullable();
-            $table->integer('quantity')->default(1);
-            $table->string('density')->nullable();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipment_gases');
+        Schema::dropIfExists('gas_equipment');
     }
 };

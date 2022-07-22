@@ -171,7 +171,7 @@
                   <td class="text-center align-middle">{{ $loop->iteration }}</td>
                   <td class="align-middle">{{ $item->block->block_name }}</td>
                   <td class="text-center align-middle">{{ $item->created_at }}</td>
-                  <td class="align-middle">{{ $item->equipment->equipment_gas->gas_filter }}</td>
+                  <td class="align-middle">{{ $item->equipment->equipment_gas->gas_equipment->name }}</td>
                   <td class="align-middle">{{ $item->equipment->activity }}</td>
                   <td class="text-center align-middle">{{ $item->equipment->flowmeter }} LPM</td>
                   <td class="text-center align-middle">{{ $item->gas_usage }} Kg</td>

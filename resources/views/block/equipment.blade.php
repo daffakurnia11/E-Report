@@ -163,7 +163,7 @@
               <td class="align-middle text-center">{{ $loop->iteration }}</td>
               <td class="align-middle">
                 @if ($item->type == 'Gas')
-                  {{ $item->type }} || {{ $item->equipment_gas->gas_filter }}
+                  {{ $item->type }} || {{ $item->equipment_gas->gas_equipment->name }}
                 @else
                   {{ $item->type }} || {{ $item->equipment_electric->name }}
                 @endif

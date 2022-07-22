@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Equipment;
 
 use App\Http\Controllers\Controller;
 use App\Models\EquipmentGas;
+use App\Models\GasEquipment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,7 +18,8 @@ class GasController extends Controller
     public function index()
     {
         return view('equipment.gas', [
-            'items'     => EquipmentGas::all()
+            'items' => EquipmentGas::all(),
+            'gases' => GasEquipment::all(),
         ]);
     }
 
@@ -30,7 +32,7 @@ class GasController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'gas_filter'        => 'required',
+            'gas_equipment_id'  => 'required',
             'capacity'          => 'nullable|numeric',
             'unit'              => 'nullable',
             'quantity'          => 'required|numeric',
@@ -56,7 +58,8 @@ class GasController extends Controller
      */
     public function show(EquipmentGas $equipmentGas)
     {
-        return response()->json(['equipment' => $equipmentGas]);
+        $equipment = EquipmentGas::where('id', $equipmentGas->id)->with('gas_equipment')->first();
+        return response()->json(['equipment' => $equipment]);
     }
 
     /**
@@ -69,7 +72,7 @@ class GasController extends Controller
     public function update(Request $request, EquipmentGas $equipmentGas)
     {
         $validator = Validator::make($request->all(), [
-            'gas_filter'        => 'required',
+            'gas_equipment_id'  => 'required',
             'capacity'          => 'nullable|numeric',
             'unit'              => 'nullable',
             'quantity'          => 'required|numeric',

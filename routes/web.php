@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Equipment\ElectricController;
 use App\Http\Controllers\Equipment\GasController;
 use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\GasEquipmentController;
 use App\Http\Controllers\Planning\ElectricPlanController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectPlanController;
@@ -68,6 +69,12 @@ Route::middleware('auth')->group(function () {
                 Route::get('/{project}/monthly-usage-data', 'monthly_usage');
             });
         });
+        // Gas Equipment Management
+        Route::get('/gas-equipment', [GasEquipmentController::class, 'index']);
+        Route::post('/gas-equipment', [GasEquipmentController::class, 'store']);
+        Route::get('/gas-equipment/show/{gasEquipment}', [GasEquipmentController::class, 'show']);
+        Route::post('/gas-equipment/{gasEquipment}', [GasEquipmentController::class, 'update']);
+        Route::delete('/gas-equipment/{gasEquipment}', [GasEquipmentController::class, 'destroy']);
     });
     // Project Manager
     Route::middleware('pm')->group(function () {
