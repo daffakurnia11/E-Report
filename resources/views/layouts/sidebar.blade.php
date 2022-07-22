@@ -47,14 +47,14 @@
         <div class="menu-title">Project Reports</div>
       </a>
       <ul class="mm-collapse {{ Request::is('/reports**') ?? 'mm-show' }}" style="">
-        {{-- <li class="{{ Request::is('/reports/gas') ?? 'mm-active' }}"> 
-          <a href="/reports/gas">
-            <i class="bi bi-arrow-right-short"></i> Gas
-          </a>
-        </li> --}}
         <li class="{{ Request::is('/reports/electric') ?? 'mm-active' }}"> 
           <a href="/reports/electric">
             <i class="bi bi-arrow-right-short"></i> Electric
+          </a>
+        </li>
+        <li class="{{ Request::is('/reports/gas') ?? 'mm-active' }}"> 
+          <a href="/reports/gas">
+            <i class="bi bi-arrow-right-short"></i> Gas
           </a>
         </li>
       </ul>

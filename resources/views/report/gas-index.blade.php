@@ -28,7 +28,7 @@
             </a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
-            <i class="bi bi-graph-up-arrow"></i> Electric Reports
+            <i class="bi bi-graph-up-arrow"></i> Gas Reports
           </li>
         </ol>
       </nav>
@@ -38,6 +38,18 @@
 
   <div class="d-flex justify-content-between align-items-center">
     <h6 class="mb-0 text-uppercase">List of Projects</h6>
+    <div class="btn-group">
+      <button class="btn btn-primary" disabled>All Gas Planning</button>
+      <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" data-popper-placement="bottom-end" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-73px, 40px);">
+        @foreach ($equipments as $item)
+        <a class="dropdown-item" href="/reports/gas/{{ $item->id }}">{{ $item->name }}</a>
+        @endforeach
+        <div class="dropdown-divider"></div>	
+        <a class="dropdown-item" href="/reports/gas">All Gas Planning</a>
+      </div>
+    </div>
   </div>
   <hr>
   <div class="card">
@@ -64,8 +76,12 @@
               <td class="align-middle">{{ $project->ship_name }}</td>
               <td class="align-middle">{{ $project->user->name }}</td>
               <td class="align-middle">{{ $project->status }}</td>
-              <td class="align-middle text-center">
-                <a href="/reports/electric/{{ $project->code }}" class="btn btn-sm text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Get usage report"><i class="bi bi-clipboard-data"></i></a>
+              <td class="align-middle text-center text-wrap">
+                @foreach ($equipments as $equipment)
+                <a href="/reports/gas/{{ $equipment->id }}/{{ $project->code }}" class="btn btn-sm text-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Get usage report">
+                  <i class="bi bi-clipboard-data"></i> {{ $equipment->name }}
+                </a>
+                @endforeach
               </td>
             </tr>
             @endforeach

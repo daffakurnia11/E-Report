@@ -12,6 +12,7 @@ use App\Http\Controllers\Planning\GasPlanController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectPlanController;
 use App\Http\Controllers\Report\ElectricReportController;
+use App\Http\Controllers\Report\GasReportController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Models\Block;
@@ -77,6 +78,12 @@ Route::middleware('auth')->group(function () {
                 Route::get('/', 'index');
                 Route::get('/{project}', 'show');
                 Route::get('/{project}/monthly-usage-data', 'monthly_usage');
+            });
+            Route::prefix('gas')->controller(GasReportController::class)->group(function () {
+                Route::get('/', 'index');
+                Route::get('/{gasEquipment}', 'equipment_index');
+                Route::get('/{gasEquipment}/{project}', 'show');
+                Route::get('/{gasEquipment}/{project}/monthly-usage-data', 'monthly_usage');
             });
         });
         // Gas Equipment Management

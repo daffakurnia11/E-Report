@@ -28,8 +28,8 @@
             </a>
           </li>
           <li class="breadcrumb-item">
-            <a href="/reports/electric">
-              <i class="bi bi-graph-up-arrow"></i> Electric Reports
+            <a href="/reports/gas/{{ $equipment->id }}">
+              <i class="bi bi-graph-up-arrow"></i> {{ $equipment->name }} Reports
             </a>
           </li>
           <li class="breadcrumb-item" aria-current="page">
@@ -117,14 +117,28 @@
   </div>
 
   {{-- Chart Usage --}}
-  <h6 class="mb-0 text-uppercase">Usage Report Chart</h6>
+  <div class="d-flex justify-content-between">
+    <h6 class="mb-0 text-uppercase">Usage Report Chart</h6>
+    <div class="btn-group">
+      <button class="btn btn-primary" disabled>{{ $equipment->name }}</button>
+      <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" data-popper-placement="bottom-end" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-73px, 40px);">
+        @foreach ($equipments as $item)
+        <a class="dropdown-item" href="/reports/gas/{{ $item->id }}/{{ $project->code }}">{{ $item->name }}</a>
+        @endforeach
+        {{-- <div class="dropdown-divider"></div>	
+        <a class="dropdown-item" href="/reports/gas">All Gas Planning</a> --}}
+      </div>
+    </div>
+  </div>
   <hr/>
   <div class="card">
     <div class="card-body">
       <div class="row justify-content-center">
         <div class="col-lg-9">
           <div class="chart-container1">
-            <canvas id="electricChart" height="600"></canvas>
+            <canvas id="gasChart" height="600"></canvas>
           </div>
         </div>
       </div>
@@ -134,13 +148,25 @@
   {{-- List of Equipments --}}
   <div class="d-flex justify-content-between align-items-center">
     <h6 class="mb-0 text-uppercase">Equipment Usage Report Data</h6>
+    <div class="btn-group">
+      <button class="btn btn-primary" disabled>{{ $equipment->name }}</button>
+      <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" data-popper-placement="bottom-end" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-73px, 40px);">
+        @foreach ($equipments as $item)
+        <a class="dropdown-item" href="/reports/gas/{{ $item->id }}/{{ $project->code }}">{{ $item->name }}</a>
+        @endforeach
+        {{-- <div class="dropdown-divider"></div>	
+        <a class="dropdown-item" href="/reports/gas">All Gas Planning</a> --}}
+      </div>
+    </div>
   </div>
   <hr>
   <div class="card">
     <div class="card-body">
-      {{-- Electric Usage Report --}}
+      {{-- Gas Usage Report --}}
       <div class="d-flex justify-content-between align-items-center">
-        <h6 class="mb-0 text-uppercase">List of Electric Usage Reports</h6>
+        <h6 class="mb-0 text-uppercase">List of Gas Usage Reports</h6>
       </div>
       <hr>
       <div class="card">
@@ -154,17 +180,15 @@
                   <th>Date</th>
                   <th>Equipment</th>
                   <th>Activity</th>
-                  <th>Volt</th>
-                  <th>Ampere</th>
+                  <th>Flowmeter</th>
                   <th>Usage</th>
-                  <th>Period</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($blocks as $block)
                   @if ($block->equipment_process->isNotEmpty())
                     @foreach ($block->equipment_process as $item)
-                      @if ($item->equipment->type == 'Electric')
+                      @if ($item->equipment->type == 'Gas' && $item->equipment->equipment_gas_id == $equipment->id)
                       @php
                         static $i = 1;
                       @endphp
@@ -172,12 +196,10 @@
                         <td class="text-center align-middle">{{ $i++; }}</td>
                         <td class="align-middle">{{ $item->block->block_name }}</td>
                         <td class="text-center align-middle">{{ $item->created_at }}</td>
-                        <td class="align-middle">{{ $item->equipment->equipment_electric->name }}</td>
+                        <td class="align-middle">{{ $item->equipment->equipment_gas->gas_equipment->name }}</td>
                         <td class="align-middle">{{ $item->equipment->activity }}</td>
-                        <td class="text-center align-middle">{{ $item->equipment->volt }} Volt</td>
-                        <td class="text-center align-middle">{{ $item->equipment->ampere }} Ampere</td>
-                        <td class="text-center align-middle">{{ $item->kWh }} kWh</td>
-                        <td class="text-center align-middle">{{ $item->period }}</td>
+                        <td class="text-center align-middle">{{ $item->equipment->flowmeter }} LPM</td>
+                        <td class="text-center align-middle">{{ $item->gas_usage }} Kg</td>
                       </tr>
                       @endif
                     @endforeach
@@ -191,10 +213,8 @@
                   <th>Date</th>
                   <th>Equipment</th>
                   <th>Activity</th>
-                  <th>Volt</th>
-                  <th>Ampere</th>
+                  <th>Flowmeter</th>
                   <th>Usage</th>
-                  <th>Period</th>
                 </tr>
               </tfoot>
             </table>
@@ -218,15 +238,15 @@
       dataType: 'JSON',
       success: function (data) {
         console.log(data);
-        const electric = document.getElementById('electricChart').getContext('2d');
-        const electricChart = new Chart(electric, {
+        const gas = document.getElementById('gasChart').getContext('2d');
+        const gasChart = new Chart(gas, {
             type: 'line',
             data: {
                 labels: data.monthlist,
                 datasets: [{
-                    label: 'Electric Usage',
-                    data: data.data.kWh,
-                    borderColor: '#3461ff',
+                    label: 'Gas Usage',
+                    data: data.data.gas_usage,
+                    borderColor: '#198754',
                     lineTension: 0.25
                 }]
             },

@@ -39,16 +39,13 @@ class ElectricReportController extends Controller
             ])->get();
 
             $monthlist[] = $month->format('m Y');
-            $gas_usage = 0;
             $kWh = 0;
             foreach ($blocks as $block) {
                 foreach ($block->equipment as $item) {
-                    $gas_usage += $item->equipment_process->gas_usage;
                     $kWh += $item->equipment_process->kWh;
                 }
             }
             $result['kWh'][] = $kWh;
-            $result['gas_usage'][] = $gas_usage;
         }
 
         // return $result;
