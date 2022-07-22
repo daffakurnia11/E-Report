@@ -57,11 +57,25 @@
             <i class="bi bi-arrow-right-short"></i> Electric
           </a>
         </li>
-        {{-- <li class="{{ Request::is('/equipment/renewable') ?? 'mm-active' }}"> 
-          <a href="/equipment/renewable">
-            <i class="bi bi-arrow-right-short"></i> Renewable
+      </ul>
+    </li>
+    <li class="{{ Request::is('/reports**') ?? 'mm-active' }}">
+      <a class="has-arrow" href="javascript:;" aria-expanded="true">
+        <div class="parent-icon"><i class="bi bi-graph-up-arrow"></i>
+        </div>
+        <div class="menu-title">Project Reports</div>
+      </a>
+      <ul class="mm-collapse {{ Request::is('/reports**') ?? 'mm-show' }}" style="">
+        {{-- <li class="{{ Request::is('/reports/gas') ?? 'mm-active' }}"> 
+          <a href="/reports/gas">
+            <i class="bi bi-arrow-right-short"></i> Gas
           </a>
         </li> --}}
+        <li class="{{ Request::is('/reports/electric') ?? 'mm-active' }}"> 
+          <a href="/reports/electric">
+            <i class="bi bi-arrow-right-short"></i> Electric
+          </a>
+        </li>
       </ul>
     </li>
     @endcan

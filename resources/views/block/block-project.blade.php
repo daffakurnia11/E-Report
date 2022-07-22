@@ -43,7 +43,10 @@
 
   <div class="d-flex justify-content-between align-items-center">
     <h6 class="mb-0 text-uppercase">List of Blocks for {{ $project->ship_name }}</h6>
-    <button type="button" class="btn btn-sm btn-primary addBlock" data-bs-toggle="modal" data-bs-target="#modalBlock">Create new block</button>
+    <div>
+      <a href="/my-project/{{ $project->code }}/report" class="btn btn-sm btn-success">Get Report</a>
+      <button type="button" class="btn btn-sm btn-primary addBlock" data-bs-toggle="modal" data-bs-target="#modalBlock">Create new block</button>
+    </div>
   </div>
   <hr>
   <div class="card">

@@ -9,6 +9,7 @@ use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\Planning\ElectricPlanController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectPlanController;
+use App\Http\Controllers\Report\ElectricReportController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Models\Block;
@@ -58,6 +59,14 @@ Route::middleware('auth')->group(function () {
             Route::post('electric/create/{project}', [ElectricPlanController::class, 'create']);
             Route::get('/electric/{project}', [ElectricPlanController::class, 'show']);
             Route::post('/electric/{project}/{projectPlan}', [ElectricPlanController::class, 'update']);
+        });
+        // Project Report
+        Route::prefix('reports')->group(function () {
+            Route::prefix('electric')->controller(ElectricReportController::class)->group(function () {
+                Route::get('/', 'index');
+                Route::get('/{project}', 'show');
+                Route::get('/{project}/monthly-usage-data', 'monthly_usage');
+            });
         });
     });
     // Project Manager

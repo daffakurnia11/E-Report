@@ -184,7 +184,8 @@
             datasets: [{
                 label: 'Electric Usage Planning',
                 data: data,
-                borderColor: '#3461ff'
+                borderColor: '#3461ff',
+                lineTension: 0.25
             }]
         },
         options: {
