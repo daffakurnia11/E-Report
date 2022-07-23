@@ -151,7 +151,7 @@
   <div class="card">
     <div class="card-body">
       <div class="chart-container1">
-        <canvas id="controlChart" height="400" data-planning={{ implode(';', $data_planning) }} data-report={{ implode(';', $interpolation) }}></canvas>
+        <canvas id="controlChart" height="400" data-planning="{{ implode(';', $data_planning) }}" data-report="{{ implode(';', $interpolation) }}"></canvas>
       </div>
     </div>
   </div>
@@ -176,7 +176,7 @@
                 label: 'Electric Usage Planning',
                 data: planning,
                 borderColor: '#3461ff',
-                lineTension: 0.25
+                lineTension: 0.25 
             },{
                 label: 'Electric Usage Report',
                 data: report,

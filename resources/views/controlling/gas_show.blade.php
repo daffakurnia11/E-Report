@@ -151,7 +151,7 @@
   <div class="card">
     <div class="card-body">
       <div class="chart-container1">
-        <canvas id="controlChart" height="400" data-planning={{ implode(';', $data_planning) }} data-report={{ implode(';', $interpolation) }}></canvas>
+        <canvas id="controlChart" height="400" data-planning="{{ implode(';', $data_planning) }}" data-report="{{ implode(';', $interpolation) }}"></canvas>
       </div>
     </div>
   </div>
