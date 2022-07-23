@@ -39,7 +39,9 @@ class ElectricControlController extends Controller
             $kWh = 0;
             foreach ($blocks as $block) {
                 foreach ($block->equipment as $item) {
-                    $kWh += $item->equipment_process->kWh;
+                    if ($item->type == 'Electric') {
+                        $kWh += $item->equipment_process->kWh;
+                    }
                 }
             }
             $sCurve = $sCurve + $kWh;
@@ -52,8 +54,6 @@ class ElectricControlController extends Controller
 
         $interpolation = [];
         $dataInter = [];
-
-        $plans = ProjectPlan::where('project_code', $project->code)->where('plan_type', 'Electric')->get();
 
         foreach ($plans as $plan) {
             $dataInter['period'] = $plan->period_interval;

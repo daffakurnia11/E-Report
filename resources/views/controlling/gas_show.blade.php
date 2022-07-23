@@ -28,8 +28,8 @@
             </a>
           </li>
           <li class="breadcrumb-item">
-            <a href="/controlling/electric">
-              <i class="bi bi-clipboard-data"></i> Electric Controlling
+            <a href="/controlling/gas/{{ $gasEquipment->id }}">
+              <i class="bi bi-clipboard-data"></i> {{ $gasEquipment->name }} Controlling
             </a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
@@ -43,7 +43,7 @@
 
   {{-- Electric Plan --}}
   <div class="d-flex justify-content-between align-items-center">
-    <h6 class="mb-0 text-uppercase">{{ $project->code }} Electric Plan Details</h6>
+    <h6 class="mb-0 text-uppercase">{{ $project->code }} {{ $gasEquipment->name }} Gas Plan Details</h6>
   </div>
   <hr>
   <div class="card">
@@ -58,14 +58,14 @@
               <th>Electric Plan</th>
               <th>T Period</th>
               <th>Persentage</th>
-              <th>kWh Plan</th>
+              <th>Gas Plan</th>
             </tr>
           </thead>
           <tbody>
             @php
               $data_planning = [];
             @endphp
-            @foreach ($electric_plans as $plan)
+            @foreach ($gas_plans as $plan)
             @php
               $total =  ($plan->persen_plan / 100) * $plan->total_plan;
               $data_planning[] = $total;
@@ -81,9 +81,9 @@
               <td class="text-center align-middle">{{ $plan->period_interval }} * {{ $diff }} = {{ $plan->period_interval * $diff }}</td>
               <td class="text-center align-middle">{{ $plan->persen_plan }}%</td>
               @if ($plan->persen_plan)
-              <td class="text-center align-middle kWh-plan{{ $plan->id }}">{{ $total }} kWh</td>
+              <td class="text-center align-middle">{{ $total }} Kg</td>
               @else
-              <td class="text-center align-middle kWh-plan{{ $plan->id }}">0 kWh</td>
+              <td class="text-center align-middle">0 Kg</td>
               @endif
             </tr>
             @endforeach
@@ -96,7 +96,7 @@
               <th>Electric Plan</th>
               <th>T Period</th>
               <th>Persentage</th>
-              <th>kWh Plan</th>
+              <th>Gas Plan</th>
             </tr>
           </tfoot>
         </table>
@@ -119,7 +119,7 @@
             <tr>
               <th></th>
               <th>Month</th>
-              <th>kWh</th>
+              <th>Gas Usage</th>
               <th>S-Curve</th>
             </tr>
           </thead>
@@ -128,7 +128,7 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $monthly_data['month'] }}</td>
-                <td>{{ $monthly_data['kWh'] }}</td>
+                <td>{{ $monthly_data['gas_usage'] }}</td>
                 <td>{{ $monthly_data['sCurve'] }}</td>
               </tr>
             @endforeach
@@ -137,7 +137,7 @@
             <tr>
               <th></th>
               <th>Month</th>
-              <th>kWh</th>
+              <th>Gas Usage</th>
               <th>S-Curve</th>
             </tr>
           </tfoot>
@@ -173,12 +173,12 @@
         data: {
             labels: ['0.2 T', '0.4 T', '0.6 T', '0.8 T', '1 T'],
             datasets: [{
-                label: 'Electric Usage Planning',
+                label: 'Gas Usage Planning',
                 data: planning,
                 borderColor: '#3461ff',
                 lineTension: 0.25
             },{
-                label: 'Electric Usage Report',
+                label: 'Gas Usage Report',
                 data: report,
                 borderColor: '#198754',
                 lineTension: 0.25

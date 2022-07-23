@@ -56,7 +56,11 @@ class GasReportController extends Controller
             $gas_usage = 0;
             foreach ($blocks as $block) {
                 foreach ($block->equipment as $item) {
-                    $gas_usage += $item->equipment_process->gas_usage;
+                    if ($item->type == 'Gas') {
+                        if ($item->equipment_gas->gas_equipment_id == $gasEquipment->id) {
+                            $gas_usage += $item->equipment_process->gas_usage;
+                        }
+                    }
                 }
             }
             $result['gas_usage'][] = $gas_usage;

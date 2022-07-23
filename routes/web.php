@@ -76,10 +76,12 @@ Route::middleware('auth')->group(function () {
             Route::prefix('/electric')->controller(ElectricControlController::class)->group(function () {
                 Route::get('/', 'index');
                 Route::get('/{project}', 'show');
-                Route::get('/monthly-usage/{project}', 'monthly_usage');
             });
             Route::prefix('/gas')->controller(GasControlController::class)->group(function () {
                 Route::get('/', 'index');
+                Route::get('/{gasEquipment}', 'equipment_detail');
+                Route::get('/{gasEquipment}/{project}', 'show');
+                Route::get('/monthly-usage/{project}', 'monthly_usage');
             });
         });
         // Project Report

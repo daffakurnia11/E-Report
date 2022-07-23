@@ -18,7 +18,7 @@
 <main class="page-content">
   <!-- Title Page -->
   <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-    <div class="breadcrumb-title pe-3">Gas Controlling</div>
+    <div class="breadcrumb-title pe-3">{{ $gasEquipment->name }} Gas Controlling</div>
     <div class="ms-auto">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 p-0">
@@ -28,7 +28,7 @@
             </a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
-            <i class="bi bi-clipboard-data"></i> Gas Controlling
+            <i class="bi bi-clipboard-data"></i> {{ $gasEquipment->name }} Gas Controlling
           </li>
         </ol>
       </nav>
@@ -39,7 +39,7 @@
   <div class="d-flex justify-content-between align-items-center">
     <h6 class="mb-0 text-uppercase">List of Projects</h6>
     <div class="btn-group">
-      <button class="btn btn-primary" disabled>All Gas Planning</button>
+      <button class="btn btn-primary" disabled>{{ $gasEquipment->name }}</button>
       <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">	<span class="visually-hidden">Toggle Dropdown</span>
       </button>
       <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" data-popper-placement="bottom-end" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(-73px, 40px);">
@@ -66,6 +66,7 @@
               <th>Period</th>
               <th>Gas Plan</th>
               <th>Gas Usage</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -74,6 +75,23 @@
               $start = Carbon\Carbon::parse($project->contract_start);
               $ended = Carbon\Carbon::parse($project->contract_ended);
               $diff = $start->diffInMonths($ended);
+
+              $total_plan = 0;
+              foreach ($project->project_plan as $plan) {
+                if ($plan->plan_type == 'Gas' && $plan->gas_equipment_id == $gasEquipment->id) {
+                  $total_plan = $plan->total_plan;
+                }
+              }       
+              $total_usage = 0;
+              foreach ($project->block as $block) {
+                foreach ($block->equipment as $equipment) {
+                  if ($equipment->type == 'Gas') {
+                    if ($equipment->equipment_gas->gas_equipment_id == $gasEquipment->id) {
+                      $total_usage = $total_usage + $equipment->equipment_process->gas_usage;
+                    }
+                  }
+                }
+              }
             @endphp
             <tr>
               <td class="text-center align-middle">{{ $loop->iteration }}</td>
@@ -84,34 +102,10 @@
               <td class="text-center align-middle">{{ $project->contract_start }}</td>
               <td class="text-center align-middle">{{ $project->contract_ended }}</td>
               <td class="text-center align-middle">{{ $diff }} Months</td>
-              <td class="align-middle">
-                @foreach ($equipments as $equipment)
-                @php
-                    $total_plan = 0;
-                    foreach ($project->project_plan as $plan) {
-                      if ($plan->plan_type == 'Gas' && $plan->gas_equipment_id == $equipment->id) {
-                        $total_plan = $plan->total_plan;
-                      }
-                    }
-                @endphp 
-                  <strong>{{ $equipment->name }}</strong> : {{ $total_plan }} Kg<br>
-                @endforeach
-              </td>
-              <td class="align-middle">
-                @foreach ($equipments as $gasequipment)
-                @php
-                    $total_usage = 0;
-                    foreach ($project->block as $block) {
-                      foreach ($block->equipment as $equipment) {
-                        if ($equipment->type == 'Gas') {
-                          if ($equipment->equipment_gas->gas_equipment_id == $gasequipment->id)
-                          $total_usage = $total_usage + $equipment->equipment_process->gas_usage;
-                        }
-                      }
-                    }
-                @endphp 
-                  <strong>{{ $gasequipment->name }}</strong> :  {{ $total_usage }}Kg<br>
-                @endforeach
+              <td class="text-center align-middle">{{ $total_plan }} kWh</td>
+              <td class="text-center align-middle">{{ $total_usage }} kWh</td>
+              <td class="text-center align-middle">
+                <a href="/controlling/gas/{{ $gasEquipment->id }}/{{ $project->code }}" class="btn-sm text-primary"><i class="bi bi-clipboard-data"></i> Get Report Data</a>
               </td>
             </tr>
             @endforeach
@@ -126,6 +120,7 @@
               <th>Period</th>
               <th>Gas Plan</th>
               <th>Gas Usage</th>
+              <th>Action</th>
             </tr>
           </tfoot>
         </table>

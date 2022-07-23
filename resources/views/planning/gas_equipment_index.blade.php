@@ -181,6 +181,10 @@
                 title: data.message,
                 text: 'Planning has stored successful',
                 confirmButtonColor: '#3461ff'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  location.reload();
+                }
               })
             }
           }
