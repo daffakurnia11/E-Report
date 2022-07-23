@@ -59,6 +59,25 @@
         </li>
       </ul>
     </li>
+    <li class="{{ Request::is('/controlling**') ?? 'mm-active' }}">
+      <a class="has-arrow" href="javascript:;" aria-expanded="true">
+        <div class="parent-icon"><i class="bi bi-clipboard-data"></i>
+        </div>
+        <div class="menu-title">Controlling</div>
+      </a>
+      <ul class="mm-collapse {{ Request::is('/controlling**') ?? 'mm-show' }}" style="">
+        <li class="{{ Request::is('/controlling/electric') ?? 'mm-active' }}"> 
+          <a href="/controlling/electric">
+            <i class="bi bi-arrow-right-short"></i> Electric
+          </a>
+        </li>
+        <li class="{{ Request::is('/controlling/gas') ?? 'mm-active' }}"> 
+          <a href="/controlling/gas">
+            <i class="bi bi-arrow-right-short"></i> Gas
+          </a>
+        </li>
+      </ul>
+    </li>
 
     <li class="menu-label">Planning Management</li>
     <li class="{{ Request::is('/planning**') ?? 'mm-active' }}">
@@ -126,11 +145,6 @@
             <i class="bi bi-arrow-right-short"></i> Electric
           </a>
         </li>
-        {{-- <li class="{{ Request::is('/equipment/renewable') ?? 'mm-active' }}"> 
-          <a href="/equipment/renewable">
-            <i class="bi bi-arrow-right-short"></i> Renewable
-          </a>
-        </li> --}}
       </ul>
     </li>
     @endcan

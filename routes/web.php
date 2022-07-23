@@ -2,20 +2,19 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlockController;
+use App\Http\Controllers\Controlling\ElectricControlController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Equipment\ElectricController;
 use App\Http\Controllers\Equipment\GasController;
 use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\Controlling\GasControlController;
 use App\Http\Controllers\GasEquipmentController;
 use App\Http\Controllers\Planning\ElectricPlanController;
 use App\Http\Controllers\Planning\GasPlanController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\ProjectPlanController;
 use App\Http\Controllers\Report\ElectricReportController;
 use App\Http\Controllers\Report\GasReportController;
-use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
-use App\Models\Block;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,6 +69,17 @@ Route::middleware('auth')->group(function () {
                 Route::post('/{gasEquipment}/create/{project}', 'create');
                 Route::get('/{gasEquipment}/{project}', 'show');
                 Route::post('/{projectPlan}', 'update');
+            });
+        });
+        // Realization
+        Route::prefix('controlling')->group(function () {
+            Route::prefix('/electric')->controller(ElectricControlController::class)->group(function () {
+                Route::get('/', 'index');
+                Route::get('/{project}', 'show');
+                Route::get('/monthly-usage/{project}', 'monthly_usage');
+            });
+            Route::prefix('/gas')->controller(GasControlController::class)->group(function () {
+                Route::get('/', 'index');
             });
         });
         // Project Report

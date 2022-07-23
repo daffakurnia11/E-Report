@@ -18,7 +18,7 @@
 <main class="page-content">
   <!-- Title Page -->
   <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-    <div class="breadcrumb-title pe-3">Electric Planning</div>
+    <div class="breadcrumb-title pe-3">Electric Controlling</div>
     <div class="ms-auto">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 p-0">
@@ -28,7 +28,7 @@
             </a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
-            <i class="bi bi-calendar-week"></i> Electric Planning
+            <i class="bi bi-clipboard-data"></i> Electric Controlling
           </li>
         </ol>
       </nav>
@@ -53,7 +53,8 @@
               <th>Contract End</th>
               <th>Period</th>
               <th>Electric Plan</th>
-              <th>Planning Status</th>
+              <th>Electric Usage</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -64,15 +65,17 @@
               $diff = $start->diffInMonths($ended);
 
               $total_plan = 0;
-              $planned = 0;
               foreach ($project->project_plan as $plan) {
                 if ($plan->plan_type == 'Electric') {
                   $total_plan = $plan->total_plan;
-                  if ($plan->persen_plan) {
-                    $planned++;
-                  }
                 }
               }       
+              $total_usage = 0;
+              foreach ($project->block as $block) {
+                foreach ($block->equipment as $equipment) {
+                  $total_usage = $total_usage + $equipment->equipment_process->kWh;
+                }
+              }
             @endphp
             <tr>
               <td class="text-center align-middle">{{ $loop->iteration }}</td>
@@ -83,24 +86,11 @@
               <td class="text-center align-middle">{{ $project->contract_start }}</td>
               <td class="text-center align-middle">{{ $project->contract_ended }}</td>
               <td class="text-center align-middle">{{ $diff }} Months</td>
+              <td class="text-center align-middle">{{ $total_plan }} kWh</td>
+              <td class="text-center align-middle">{{ $total_usage }} kWh</td>
               <td class="text-center align-middle">
-                <form action="" class="electric-plan-form" data-project={{ $project->code }}>
-                  @csrf
-                  <div class="input-group input-group-sm">
-                    <input type="number" min="0" class="form-control" placeholder="Total kWh" name="total_plan" value="{{ $total_plan }}">
-                    <button class="btn btn-primary electric-plan-submit" type="submit">Add</button>
-                  </div>
-                </form>
+                <a href="/controlling/electric/{{ $project->code }}" class="btn-sm text-primary"><i class="bi bi-clipboard-data"></i> Get Report Data</a>
               </td>
-              @if ($planned == 5)
-              <td class="text-center align-middle">
-                <a href="/planning/electric/{{ $project->code }}" class="badge text-dark bg-success">Planned - See planning</a>
-              </td>
-              @else
-              <td class="text-center align-middle">
-                <a href="/planning/electric/{{ $project->code }}" class="badge text-light bg-danger">Unplanned - Create planning</a>
-              </td>
-              @endif
             </tr>
             @endforeach
           </tbody>
@@ -113,7 +103,8 @@
               <th>Contract End</th>
               <th>Period</th>
               <th>Electric Plan</th>
-              <th>Planning Status</th>
+              <th>Electric Usage</th>
+              <th>Action</th>
             </tr>
           </tfoot>
         </table>
@@ -124,57 +115,4 @@
 </main>
 <!--end page main-->
 
-@endsection
-
-@section('custom-js')
-  <script>
-    $(function () {
-      $('.electric-plan-form').submit(function (e) {
-        e.preventDefault();
-        const val = $(this).find('input[name=total_plan]').val();
-        const _token = $(this).find('input[name=_token]').val();
-        const project = $(this).data('project');
-        const url = window.location.href;
-        $.ajax({
-          type: "POST",
-          url: url + '/create/' + project,
-          data: {
-            total_plan: val,
-            _token: _token
-          },
-          dataType: 'JSON',
-          beforeSend: function() {
-            Swal.fire({
-              title: 'Sending Data!',
-              showCancelButton: false,
-              showConfirmButton: false,
-              allowOutsideClick: false
-            })
-          },
-          success: function (data) {
-            if (data.message == 'Planning failed') {
-              Swal.fire({
-                icon: 'error',
-                title: data.message,
-                text: 'Please fill the input!',
-                confirmButtonColor: '#3461ff'
-              })
-            } else {
-              $(this).find('input[name=total_plan]').val(data.plan);
-              Swal.fire({
-                icon: 'success',
-                title: data.message,
-                text: 'Planning has stored successful',
-                confirmButtonColor: '#3461ff'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  location.reload();
-                }
-              })
-            }
-          }
-        })
-      });
-    });
-  </script>
 @endsection

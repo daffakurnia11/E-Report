@@ -34,8 +34,9 @@ class ElectricReportController extends Controller
 
         foreach (CarbonPeriod::create($start, '1 month', $finish) as $month) {
             $monthParam = $month->format('m');
+            $yearParam = $month->format('Y');
             $blocks = Block::where('project_id', $project->id)->with([
-                'equipment' => fn ($query) => $query->whereMonth('stopped_at', $monthParam)->with('equipment_process')
+                'equipment' => fn ($query) => $query->whereYear('stopped_at', $yearParam)->whereMonth('stopped_at', $monthParam)->with('equipment_process')
             ])->get();
 
             $monthlist[] = $month->format('m Y');
