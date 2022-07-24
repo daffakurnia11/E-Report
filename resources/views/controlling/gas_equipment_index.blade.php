@@ -102,8 +102,8 @@
               <td class="text-center align-middle">{{ $project->contract_start }}</td>
               <td class="text-center align-middle">{{ $project->contract_ended }}</td>
               <td class="text-center align-middle">{{ $diff }} Months</td>
-              <td class="text-center align-middle">{{ $total_plan }} kWh</td>
-              <td class="text-center align-middle">{{ $total_usage }} kWh</td>
+              <td class="text-center align-middle">{{ $total_plan }} Kg</td>
+              <td class="text-center align-middle">{{ $total_usage }} Kg</td>
               <td class="text-center align-middle">
                 <a href="/controlling/gas/{{ $gasEquipment->id }}/{{ $project->code }}" class="btn-sm text-primary"><i class="bi bi-clipboard-data"></i> Get Report Data</a>
               </td>

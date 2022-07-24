@@ -41,7 +41,7 @@
   </div>
   <!-- End of Title Page -->
 
-  {{-- Electric Plan --}}
+  {{-- Gas Plan --}}
   <div class="d-flex justify-content-between align-items-center">
     <h6 class="mb-0 text-uppercase">{{ $project->code }} {{ $gasEquipment->name }} Gas Plan Details</h6>
   </div>
@@ -55,7 +55,7 @@
               <th>No</th>
               <th>Ship Name</th>
               <th>Contract</th>
-              <th>Electric Plan</th>
+              <th>Total Plan</th>
               <th>T Period</th>
               <th>Persentage</th>
               <th>Gas Plan</th>
@@ -77,7 +77,7 @@
                 <strong>Start</strong> {{ $project->contract_start }}<br>
                 <strong>End</strong> {{ $project->contract_ended }}
               </td>
-              <td class="text-center align-middle">{{ $plan->total_plan }}</td>
+              <td class="text-center align-middle">{{ $plan->total_plan }} Kg</td>
               <td class="text-center align-middle">{{ $plan->period_interval }} * {{ $diff }} = {{ $plan->period_interval * $diff }}</td>
               <td class="text-center align-middle">{{ $plan->persen_plan }}%</td>
               @if ($plan->persen_plan)
@@ -93,7 +93,7 @@
               <th>No</th>
               <th>Ship Name</th>
               <th>Contract</th>
-              <th>Electric Plan</th>
+              <th>Total Plan</th>
               <th>T Period</th>
               <th>Persentage</th>
               <th>Gas Plan</th>
@@ -106,7 +106,7 @@
   @php
   @endphp
 
-  {{-- Electric Report --}}
+  {{-- Gas Report --}}
   <div class="d-flex justify-content-between align-items-center">
     <h6 class="mb-0 text-uppercase">{{ $project->code }} Monthly Usage</h6>
   </div>
@@ -128,8 +128,8 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $monthly_data['month'] }}</td>
-                <td>{{ $monthly_data['gas_usage'] }}</td>
-                <td>{{ $monthly_data['sCurve'] }}</td>
+                <td>{{ $monthly_data['gas_usage'] }} Kg</td>
+                <td>{{ $monthly_data['sCurve'] }} Kg</td>
               </tr>
             @endforeach
           </tbody>

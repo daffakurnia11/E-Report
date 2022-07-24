@@ -55,7 +55,7 @@
               <th>No</th>
               <th>Ship Name</th>
               <th>Contract</th>
-              <th>Electric Plan</th>
+              <th>Total Plan</th>
               <th>T Period</th>
               <th>Persentage</th>
               <th>kWh Plan</th>
@@ -77,7 +77,7 @@
                 <strong>Start</strong> {{ $project->contract_start }}<br>
                 <strong>End</strong> {{ $project->contract_ended }}
               </td>
-              <td class="text-center align-middle">{{ $plan->total_plan }}</td>
+              <td class="text-center align-middle">{{ $plan->total_plan }} kWh</td>
               <td class="text-center align-middle">{{ $plan->period_interval }} * {{ $diff }} = {{ $plan->period_interval * $diff }}</td>
               <td class="text-center align-middle">{{ $plan->persen_plan }}%</td>
               @if ($plan->persen_plan)
@@ -93,7 +93,7 @@
               <th>No</th>
               <th>Ship Name</th>
               <th>Contract</th>
-              <th>Electric Plan</th>
+              <th>Total Plan</th>
               <th>T Period</th>
               <th>Persentage</th>
               <th>kWh Plan</th>
@@ -128,8 +128,8 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $monthly_data['month'] }}</td>
-                <td>{{ $monthly_data['kWh'] }}</td>
-                <td>{{ $monthly_data['sCurve'] }}</td>
+                <td>{{ $monthly_data['kWh'] }} kWh</td>
+                <td>{{ $monthly_data['sCurve'] }} kWh</td>
               </tr>
             @endforeach
           </tbody>
