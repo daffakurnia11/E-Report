@@ -36,40 +36,32 @@ class DatabaseSeeder extends Seeder
             'roles' => 'GM'
         ]);
 
-        \App\Models\User::factory()->has(
-            Project::factory()->count(3)
-        )->create([
+        \App\Models\User::factory()->create([
             'name'          => 'Project Manager Admin',
             'email'         => 'admin_pm@gmail.com',
             'phone'         => '085156317473',
             'password'      => Hash::make('admin'),
             'roles'         => 'PM',
         ]);
-        \App\Models\User::factory(2)->has(
-            Project::factory()->count(3)
-        )->create([
+        \App\Models\User::factory(2)->create([
             'roles' => 'PM'
         ]);
 
-        \App\Models\User::factory()->has(
-            Block::factory()->count(10)
-        )->create([
+        \App\Models\User::factory()->create([
             'name'          => 'PIC Admin',
             'email'         => 'admin_pic@gmail.com',
             'phone'         => '085156317473',
             'password'      => Hash::make('admin'),
             'roles'         => 'PIC',
         ]);
-        \App\Models\User::factory(3)->has(
-            Block::factory()->count(10)
-        )->create([
+        \App\Models\User::factory(3)->create([
             'roles' => 'PIC'
         ]);
 
         $data_path = 'app/Data/ereport.sql';
         DB::unprepared(file_get_contents($data_path));
 
-        \App\Models\Equipment::factory(150)->create();
+        // \App\Models\Equipment::factory(150)->create();
 
         \App\Models\GasEquipment::factory(7)->create();
 
